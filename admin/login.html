@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - SAINATH AGRO NEEDS</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ===== BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f8f9fa;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Background Pattern */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('../images/5.jpeg') no-repeat center center;
+            background-size: cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        /* ===== LOGIN CONTAINER ===== */
+        .login-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 420px;
+            padding: 40px 35px;
+            text-align: center;
+            border-top: 4px solid #28a745;
+            transition: all 0.3s ease;
+        }
+
+        .login-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+        }
+
+        /* ===== LOGO STYLES ===== */
+        .login-logo {
+            margin-bottom: 25px;
+        }
+
+        .login-logo img {
+            max-width: 120px;
+            border: 3px solid #28a745;
+            border-radius: 50%;
+            padding: 8px;
+            background: white;
+        }
+
+        /* ===== TITLE STYLES ===== */
+        .login-title {
+            color: #28a745;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        /* ===== FORM STYLES ===== */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group-text {
+            background: #28a745;
+            border: 1px solid #28a745;
+            color: white;
+            min-width: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border-left: none;
+        }
+
+        .form-control:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+
+        /* ===== ROLE SELECTION ===== */
+        .role-selection {
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .role-selection label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .role-options {
+            display: flex;
+            gap: 15px;
+        }
+
+        .role-option {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .role-option input[type="radio"] {
+            display: none;
+        }
+
+        .role-option label {
+            display: block;
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .role-option label i {
+            margin-right: 8px;
+            color: #666;
+        }
+
+        .role-option input[type="radio"]:checked + label {
+            background: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+
+        .role-option input[type="radio"]:checked + label i {
+            color: white;
+        }
+
+        .role-option label:hover {
+            border-color: #28a745;
+        }
+
+        /* ===== BUTTON STYLES ===== */
+        .btn-login {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1rem;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        /* ===== ERROR MESSAGE ===== */
+        .error-message {
+            color: #dc3545;
+            margin-top: 15px;
+            display: none;
+            font-weight: 500;
+            padding: 10px;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+        }
+
+        /* ===== FOOTER LINKS ===== */
+        .login-footer {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .login-footer a {
+            color: #28a745;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .login-footer a:hover {
+            color: #218838;
+            text-decoration: underline;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 480px) {
+            .login-container {
+                margin: 20px;
+                padding: 30px 25px;
+            }
+            
+            .role-options {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .login-logo img {
+                max-width: 100px;
+            }
+            
+            .login-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-logo">
+            <img src="../logo SAN .png" alt="SAINATH AGRO NEEDS">
+        </div>
+        <h2 class="login-title">Admin Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" id="username" class="form-control" placeholder="Enter your username" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    </div>
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="virtualId">Virtual ID</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                    </div>
+                    <input type="text" id="virtualId" class="form-control" placeholder="Enter your Virtual ID" required>
+                </div>
+            </div>
+            <div class="role-selection">
+                <label>Select Role</label>
+                <div class="role-options">
+                    <div class="role-option">
+                        <input type="radio" id="manager" name="role" value="manager" required>
+                        <label for="manager"><i class="fas fa-user-tie"></i> Manager</label>
+                    </div>
+                    <div class="role-option">
+                        <input type="radio" id="employee" name="role" value="employee" required>
+                        <label for="employee"><i class="fas fa-user"></i> Employee</label>
+                    </div>
+                </div>
+            </div>
+            <div id="error-message" class="error-message">
+                <i class="fas fa-exclamation-triangle"></i> Invalid credentials. Please try again.
+            </div>
+            <button type="submit" class="btn btn-login">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+        </form>
+        <div class="login-footer">
+            <p>Don't have an account? <a href="#">Contact Admin</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const virtualId = document.getElementById('virtualId').value;
+            const role = document.querySelector('input[name="role"]:checked');
+            const errorMessage = document.getElementById('error-message');
+            const loginContainer = document.querySelector('.login-container');
+            
+            // Check if role is selected
+            if (!role) {
+                errorMessage.textContent = 'Please select a role.';
+                errorMessage.style.display = 'block';
+                loginContainer.classList.add('shake');
+                setTimeout(() => loginContainer.classList.remove('shake'), 500);
+                return;
+            }
+            
+            const roleValue = role.value;
+            
+            // Simple validation (in a real app, this would be server-side)
+            if (roleValue === 'manager' && username === 'manager' && password === 'manager123' && virtualId === 'MGR-001') {
+                // Redirect to manager dashboard
+                window.location.href = 'manager-dashboard.html';
+            } else if (roleValue === 'employee' && username === 'employee' && password === 'employee123' && virtualId === 'EMP-001') {
+                // Redirect to employee dashboard
+                window.location.href = 'employee-dashboard.html';
+            } else {
+                // Show error message with shake animation
+                errorMessage.textContent = 'Invalid credentials. Please try again.';
+                errorMessage.style.display = 'block';
+                loginContainer.classList.add('shake');
+                setTimeout(() => loginContainer.classList.remove('shake'), 500);
+            }
+        });
+
+        // Clear error message when user starts typing
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                document.getElementById('error-message').style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

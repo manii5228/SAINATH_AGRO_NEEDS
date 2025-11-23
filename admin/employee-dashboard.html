@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard - SAINATH AGRO NEEDS</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ===== BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ===== SIDEBAR STYLES ===== */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: #28a745;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .sidebar-logo {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+
+        .sidebar-logo img {
+            height: 60px;
+            border: 3px solid white;
+            border-radius: 50%;
+            padding: 5px;
+            background: white;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .sidebar-menu a:hover {
+            background: rgba(255,255,255,0.1);
+            border-left-color: #ffeb3b;
+            transform: translateX(5px);
+        }
+
+        .sidebar-menu a.active {
+            background: rgba(255,255,255,0.15);
+            border-left-color: #ffeb3b;
+            font-weight: 600;
+        }
+
+        .sidebar-menu i {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            margin-left: 280px;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            color: #28a745;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-info strong {
+            color: #28a745;
+            font-size: 1.1rem;
+        }
+
+        .user-info p {
+            margin: 2px 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .logout-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(220,53,69,0.3);
+        }
+
+        /* ===== STATS CARDS ===== */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .stat-icon.orders {
+            background: #28a745;
+        }
+
+        .stat-icon.tasks {
+            background: #ffc107;
+        }
+
+        .stat-icon.customers {
+            background: #17a2b8;
+        }
+
+        .stat-info h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #333;
+            margin: 0;
+        }
+
+        .stat-info p {
+            color: #666;
+            margin: 5px 0 0 0;
+            font-weight: 500;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .content-section h2 {
+            color: #28a745;
+            font-weight: 700;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .content-section h3 {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        /* ===== FORM STYLES ===== */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+
+        /* ===== BUTTON STYLES ===== */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.875rem;
+        }
+
+        /* ===== TABLE STYLES ===== */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table th {
+            background: #f8f9fa;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #28a745;
+        }
+
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        table tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* ===== BADGE STYLES ===== */
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .bg-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .bg-in-progress {
+            background: #cce7ff;
+            color: #004085;
+        }
+
+        .bg-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .bg-success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .bg-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar-menu {
+                display: flex;
+                overflow-x: auto;
+            }
+            
+            .sidebar-menu li {
+                margin-bottom: 0;
+                margin-right: 10px;
+            }
+            
+            .sidebar-menu a {
+                white-space: nowrap;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+            }
+            
+            .sidebar-menu a.active {
+                border-left: none;
+                border-bottom-color: #ffeb3b;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-section {
+            animation: fadeInUp 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <img src="../logo SAN .png" alt="SAINATH AGRO NEEDS">
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="#tasks"><i class="fas fa-tasks"></i> My Tasks</a></li>
+            <li><a href="#attendance"><i class="fas fa-calendar-check"></i> My Attendance</a></li>
+            <li><a href="#orders"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+            <li><a href="#products"><i class="fas fa-seedling"></i> Products</a></li>
+            <li><a href="#customers"><i class="fas fa-users"></i> Customers</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Employee Dashboard</h1>
+            <div class="user-info">
+                <div>
+                    <strong>Employee User</strong>
+                    <p>Sales Executive</p>
+                    <p>Virtual ID: EMP-001</p>
+                </div>
+                <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon orders">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>24</h3>
+                    <p>My Orders</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon tasks">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>8</h3>
+                    <p>Pending Tasks</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon customers">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>42</h3>
+                    <p>Customers</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Tasks -->
+        <div id="tasks" class="content-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                <h2>My Tasks</h2>
+                <button class="btn btn-primary" onclick="markAllTasks()"><i class="fas fa-check-double"></i> Mark All as Complete</button>
+            </div>
+            
+            <!-- Email Composer -->
+            <div style="margin-bottom: 30px; padding: 25px; background: #f8f9fa; border-radius: 8px;">
+                <h3>Send Email to Manager</h3>
+                <form id="emailForm">
+                    <div class="form-group">
+                        <label>To:</label>
+                        <input type="text" class="form-control" value="manager@sainath.com" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject:</label>
+                        <input type="text" class="form-control" id="employeeEmailSubject" placeholder="Email subject">
+                    </div>
+                    <div class="form-group">
+                        <label>Message:</label>
+                        <textarea class="form-control" id="employeeEmailBody" rows="4" placeholder="Write your message here..."></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="sendEmployeeEmail()"><i class="fas fa-paper-plane"></i> Send Email</button>
+                </form>
+            </div>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task ID</th>
+                            <th>Task Name</th>
+                            <th>Assigned By</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th>Attachments</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#TASK-001</td>
+                            <td>Follow up with Ramesh Patel</td>
+                            <td>Manager</td>
+                            <td>2024-01-20</td>
+                            <td><span class="badge bg-pending">Pending</span></td>
+                            <td><button class="btn btn-sm btn-primary"><i class="fas fa-download"></i> Download</button></td>
+                            <td>
+                                <button class="btn btn-success btn-sm"><i class="fas fa-check"></i> Complete</button>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-upload"></i> Upload Work</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#TASK-002</td>
+                            <td>Update product inventory</td>
+                            <td>Manager</td>
+                            <td>2024-01-18</td>
+                            <td><span class="badge bg-in-progress">In Progress</span></td>
+                            <td><button class="btn btn-sm btn-primary"><i class="fas fa-download"></i> Download</button></td>
+                            <td>
+                                <button class="btn btn-success btn-sm"><i class="fas fa-check"></i> Complete</button>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-upload"></i> Upload Work</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#TASK-003</td>
+                            <td>Process new order #ORD-004</td>
+                            <td>Manager</td>
+                            <td>2024-01-19</td>
+                            <td><span class="badge bg-completed">Completed</span></td>
+                            <td><button class="btn btn-sm btn-primary"><i class="fas fa-download"></i> Download</button></td>
+                            <td>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</button>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-upload"></i> Re-upload</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Attendance Section -->
+        <div id="attendance" class="content-section">
+            <h2>My Attendance</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Day</th>
+                            <th>Status</th>
+                            <th>Check-in Time</th>
+                            <th>Check-out Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2024-01-20</td>
+                            <td>Saturday</td>
+                            <td><span class="badge bg-success">Present</span></td>
+                            <td>09:00 AM</td>
+                            <td>06:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td>2024-01-19</td>
+                            <td>Friday</td>
+                            <td><span class="badge bg-success">Present</span></td>
+                            <td>09:15 AM</td>
+                            <td>06:30 PM</td>
+                        </tr>
+                        <tr>
+                            <td>2024-01-18</td>
+                            <td>Thursday</td>
+                            <td><span class="badge bg-success">Present</span></td>
+                            <td>08:45 AM</td>
+                            <td>05:45 PM</td>
+                        </tr>
+                        <tr>
+                            <td>2024-01-17</td>
+                            <td>Wednesday</td>
+                            <td><span class="badge bg-warning">Late</span></td>
+                            <td>10:30 AM</td>
+                            <td>06:00 PM</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Assigned Orders -->
+        <div id="orders" class="content-section">
+            <h2>Assigned Orders</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Product</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#ORD-004</td>
+                            <td>Vijay Kumar</td>
+                            <td>KANAK Seed</td>
+                            <td>2024-01-17</td>
+                            <td>₹15,000</td>
+                            <td><span class="badge bg-pending">Pending</span></td>
+                            <td>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</button>
+                                <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Update</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-005</td>
+                            <td>Sumit Singh</td>
+                            <td>Fertilizer Combo</td>
+                            <td>2024-01-18</td>
+                            <td>₹9,500</td>
+                            <td><span class="badge bg-in-progress">Processing</span></td>
+                            <td>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</button>
+                                <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Update</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'login.html';
+            }
+        }
+        
+        function markAllTasks() {
+            if (confirm('Mark all tasks as completed?')) {
+                alert('All tasks marked as completed!');
+            }
+        }
+        
+        function sendEmployeeEmail() {
+            const subject = document.getElementById('employeeEmailSubject').value;
+            const body = document.getElementById('employeeEmailBody').value;
+            
+            if (!subject || !body) {
+                alert('Please fill in all email fields');
+                return;
+            }
+            
+            alert('Email sent to manager successfully!');
+            document.getElementById('emailForm').reset();
+        }
+    </script>
+</body>
+</html>

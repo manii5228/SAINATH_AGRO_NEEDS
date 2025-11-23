@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Dashboard - SAINATH AGRO NEEDS</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ===== BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ===== SIDEBAR STYLES ===== */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: #28a745;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .sidebar-logo {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+
+        .sidebar-logo img {
+            height: 60px;
+            border: 3px solid white;
+            border-radius: 50%;
+            padding: 5px;
+            background: white;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .sidebar-menu a:hover {
+            background: rgba(255,255,255,0.1);
+            border-left-color: #ffeb3b;
+            transform: translateX(5px);
+        }
+
+        .sidebar-menu a.active {
+            background: rgba(255,255,255,0.15);
+            border-left-color: #ffeb3b;
+            font-weight: 600;
+        }
+
+        .sidebar-menu i {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            margin-left: 280px;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            color: #28a745;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-info strong {
+            color: #28a745;
+            font-size: 1.1rem;
+        }
+
+        .user-info p {
+            margin: 2px 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .logout-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(220,53,69,0.3);
+        }
+
+        /* ===== STATS CARDS ===== */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .stat-icon.orders {
+            background: #28a745;
+        }
+
+        .stat-icon.revenue {
+            background: #17a2b8;
+        }
+
+        .stat-icon.customers {
+            background: #ffc107;
+        }
+
+        .stat-icon.products {
+            background: #6f42c1;
+        }
+
+        .stat-info h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #333;
+            margin: 0;
+        }
+
+        .stat-info p {
+            color: #666;
+            margin: 5px 0 0 0;
+            font-weight: 500;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .content-section h2 {
+            color: #28a745;
+            font-weight: 700;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .content-section h3 {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        /* ===== FORM STYLES ===== */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+
+        /* ===== BUTTON STYLES ===== */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.875rem;
+        }
+
+        /* ===== TABLE STYLES ===== */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table th {
+            background: #f8f9fa;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #28a745;
+        }
+
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        table tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* ===== BADGE STYLES ===== */
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .bg-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .bg-in-progress {
+            background: #cce7ff;
+            color: #004085;
+        }
+
+        .bg-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .bg-success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .bg-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .bg-info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        /* ===== MODAL STYLES ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #dc3545;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar-menu {
+                display: flex;
+                overflow-x: auto;
+            }
+            
+            .sidebar-menu li {
+                margin-bottom: 0;
+                margin-right: 10px;
+            }
+            
+            .sidebar-menu a {
+                white-space: nowrap;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+            }
+            
+            .sidebar-menu a.active {
+                border-left: none;
+                border-bottom-color: #ffeb3b;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .content-section {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <img src="../logo SAN .png" alt="SAINATH AGRO NEEDS">
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="#task-management"><i class="fas fa-tasks"></i> Task Management</a></li>
+            <li><a href="#attendance"><i class="fas fa-calendar-check"></i> Attendance</a></li>
+            <li><a href="#employees"><i class="fas fa-users"></i> Employees</a></li>
+            <li><a href="#products"><i class="fas fa-seedling"></i> Products</a></li>
+            <li><a href="#orders"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+            <li><a href="#reports"><i class="fas fa-chart-line"></i> Reports</a></li>
+            <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Manager Dashboard</h1>
+            <div class="user-info">
+                <div>
+                    <strong>Manager User</strong>
+                    <p>Administrator</p>
+                    <p>Virtual ID: MGR-001</p>
+                </div>
+                <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon orders">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>128</h3>
+                    <p>Total Orders</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon revenue">
+                    <i class="fas fa-rupee-sign"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>₹2,45,000</h3>
+                    <p>Total Revenue</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon customers">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>850</h3>
+                    <p>Customers</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon products">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>42</h3>
+                    <p>Products</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Management Section -->
+        <div id="task-management" class="content-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                <h2>Task Management</h2>
+                <button class="btn btn-primary" onclick="openTaskModal()"><i class="fas fa-plus"></i> Assign New Task</button>
+            </div>
+            
+            <!-- Email Composer -->
+            <div style="margin-bottom: 30px; padding: 25px; background: #f8f9fa; border-radius: 8px;">
+                <h3>Send Email</h3>
+                <form id="emailForm">
+                    <div class="form-group">
+                        <label>To:</label>
+                        <select class="form-control" id="emailRecipient">
+                            <option value="">Select Employee</option>
+                            <option value="employee1@sainath.com">Raj Kumar (Sales)</option>
+                            <option value="employee2@sainath.com">Priya Sharma (Support)</option>
+                            <option value="employee3@sainath.com">Amit Patel (Delivery)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject:</label>
+                        <input type="text" class="form-control" id="emailSubject" placeholder="Email subject">
+                    </div>
+                    <div class="form-group">
+                        <label>Message:</label>
+                        <textarea class="form-control" id="emailBody" rows="4" placeholder="Write your message here..."></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="sendEmail()"><i class="fas fa-paper-plane"></i> Send Email</button>
+                </form>
+            </div>
+            
+            <!-- Task List -->
+            <div class="table-responsive">
+                <h3>Assigned Tasks</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task ID</th>
+                            <th>Task Name</th>
+                            <th>Assigned To</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th>Attachments</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#TASK-001</td>
+                            <td>Follow up with Ramesh Patel</td>
+                            <td>Raj Kumar</td>
+                            <td>2024-01-25</td>
+                            <td><span class="badge bg-warning">In Progress</span></td>
+                            <td><button class="btn btn-sm btn-primary"><i class="fas fa-download"></i> View</button></td>
+                            <td>
+                                <button class="btn btn-success btn-sm"><i class="fas fa-check"></i> Complete</button>
+                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#TASK-002</td>
+                            <td>Process new order #ORD-004</td>
+                            <td>Priya Sharma</td>
+                            <td>2024-01-22</td>
+                            <td><span class="badge bg-success">Completed</span></td>
+                            <td><button class="btn btn-sm btn-primary"><i class="fas fa-download"></i> View</button></td>
+                            <td>
+                                <button class="btn btn-success btn-sm" disabled><i class="fas fa-check"></i> Complete</button>
+                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#TASK-003</td>
+                            <td>Update product inventory</td>
+                            <td>Amit Patel</td>
+                            <td>2024-01-30</td>
+                            <td><span class="badge bg-pending">Pending</span></td>
+                            <td><button class="btn btn-sm btn-primary"><i class="fas fa-download"></i> View</button></td>
+                            <td>
+                                <button class="btn btn-success btn-sm"><i class="fas fa-check"></i> Complete</button>
+                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Attendance Section -->
+        <div id="attendance" class="content-section">
+            <h2>Attendance Management</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Employee ID</th>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Today's Status</th>
+                            <th>This Month</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>EMP-001</td>
+                            <td>Raj Kumar</td>
+                            <td>Sales Executive</td>
+                            <td><span class="badge bg-success">Present</span></td>
+                            <td>22/25 days</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>EMP-002</td>
+                            <td>Priya Sharma</td>
+                            <td>Support Staff</td>
+                            <td><span class="badge bg-success">Present</span></td>
+                            <td>23/25 days</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>EMP-003</td>
+                            <td>Amit Patel</td>
+                            <td>Delivery Manager</td>
+                            <td><span class="badge bg-warning">Late</span></td>
+                            <td>20/25 days</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> View</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Recent Orders -->
+        <div id="orders" class="content-section">
+            <h2>Recent Orders</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Product</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#ORD-001</td>
+                            <td>Ramesh Patel</td>
+                            <td>KANAK Seed</td>
+                            <td>2024-01-15</td>
+                            <td>₹12,500</td>
+                            <td><span class="badge bg-success">Delivered</span></td>
+                            <td>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                                <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-002</td>
+                            <td>Sita Ram Sharma</td>
+                            <td>Fertilizer Combo</td>
+                            <td>2024-01-16</td>
+                            <td>₹8,200</td>
+                            <td><span class="badge bg-warning">Processing</span></td>
+                            <td>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                                <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-003</td>
+                            <td>Amit Yadav</td>
+                            <td>Pesticide Pack</td>
+                            <td>2024-01-17</td>
+                            <td>₹5,600</td>
+                            <td><span class="badge bg-info">Shipped</span></td>
+                            <td>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                                <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Manage Products -->
+        <div id="products" class="content-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                <h2>Manage Products</h2>
+                <button class="btn btn-primary"><i class="fas fa-plus"></i> Add New Product</button>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#PROD-001</td>
+                            <td>KANAK Seed</td>
+                            <td>Seeds</td>
+                            <td>₹1,250/kg</td>
+                            <td>500 kg</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PROD-002</td>
+                            <td>Fertilizer Combo</td>
+                            <td>Fertilizers</td>
+                            <td>₹8,200/set</td>
+                            <td>120 sets</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PROD-003</td>
+                            <td>Pesticide Pack</td>
+                            <td>Pesticides</td>
+                            <td>₹5,600/set</td>
+                            <td>85 sets</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Assignment Modal -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeTaskModal()">&times;</span>
+            <h2>Assign New Task</h2>
+            <form id="taskForm">
+                <div class="form-group">
+                    <label>Task Title:</label>
+                    <input type="text" class="form-control" id="taskTitle" placeholder="Enter task title">
+                </div>
+                <div class="form-group">
+                    <label>Assign To:</label>
+                    <select class="form-control" id="taskAssignee">
+                        <option value="">Select Employee</option>
+                        <option value="employee1">Raj Kumar (Sales)</option>
+                        <option value="employee2">Priya Sharma (Support)</option>
+                        <option value="employee3">Amit Patel (Delivery)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Description:</label>
+                    <textarea class="form-control" id="taskDescription" rows="3" placeholder="Task description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Due Date:</label>
+                    <input type="date" class="form-control" id="taskDueDate">
+                </div>
+                <div class="form-group">
+                    <label>Attachments:</label>
+                    <input type="file" class="form-control" id="taskAttachment">
+                    <small class="form-text text-muted">Files will be uploaded to Google Drive</small>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button type="button" class="btn btn-primary" onclick="assignTask()">Assign Task</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeTaskModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'login.html';
+            }
+        }
+        
+        function openTaskModal() {
+            document.getElementById('taskModal').style.display = 'block';
+        }
+        
+        function closeTaskModal() {
+            document.getElementById('taskModal').style.display = 'none';
+        }
+        
+        function assignTask() {
+            alert('Task assigned successfully!');
+            closeTaskModal();
+        }
+        
+        function sendEmail() {
+            const recipient = document.getElementById('emailRecipient').value;
+            const subject = document.getElementById('emailSubject').value;
+            const body = document.getElementById('emailBody').value;
+            
+            if (!recipient || !subject || !body) {
+                alert('Please fill in all email fields');
+                return;
+            }
+            
+            alert('Email sent successfully to ' + recipient);
+            document.getElementById('emailForm').reset();
+        }
+        
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('taskModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
