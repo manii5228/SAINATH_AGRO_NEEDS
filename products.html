@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products - SAINATH AGRO NEEDS</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ===== BASE STYLES ===== */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .section {
+            scroll-margin-top: 80px;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            background: #28a745;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand img {
+            height: 50px;
+            border: 3px solid white;
+            border-radius: 50%;
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: white !important;
+            padding: 10px 15px !important;
+        }
+
+        .nav-link:hover {
+            color: #f8f9fa !important;
+            transform: translateY(-2px);
+        }
+
+        .nav-item.active .nav-link {
+            color: #ffeb3b !important;
+            font-weight: 600;
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-header {
+            background: url('images/slider-bg-new-1.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .page-header .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== CAROUSEL SECTION ===== */
+        .carousel-section {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+
+        .product-carousel {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .carousel-slides {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .carousel-caption h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .carousel-caption p {
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+            z-index: 10;
+        }
+
+        .carousel-btn {
+            background: rgba(40, 167, 69, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: #28a745;
+            transform: scale(1.1);
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #28a745;
+            transform: scale(1.2);
+        }
+
+        /* ===== PRODUCT CATEGORIES ===== */
+        .categories-section {
+            padding: 80px 0;
+        }
+
+        .layer-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .layer-title h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .layer-title .light-text {
+            color: #666;
+            font-weight: 300;
+        }
+
+        .layer-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            border: 1px solid #e9ecef;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: #28a745;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover .category-icon {
+            transform: scale(1.1);
+            background: #218838;
+        }
+
+        .category-icon i {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .category-card h3 {
+            color: #28a745;
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+
+        .category-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        /* ===== PRODUCT GRID ===== */
+        .products-grid {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            border: 1px solid #e9ecef;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .product-image {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: #28a745;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .product-card h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .product-card p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            color: #28a745;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .btn.button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+
+        .btn.button:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* ===== FOOTER STYLES ===== */
+        .footer-area {
+            background: #333;
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 0;
+        }
+
+        .footer-col h5 {
+            color: #28a745;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .footer-bulletlist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-bulletlist li {
+            margin-bottom: 12px;
+            padding-left: 0;
+        }
+
+        .footer-bulletlist a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .footer-bulletlist a:hover {
+            color: #28a745;
+            transform: translateX(5px);
+        }
+
+        .footer-2-img {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .footer-2-img li {
+            flex: 0 0 calc(33.333% - 8px);
+        }
+
+        .footer-2-img img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-2-img img:hover {
+            transform: scale(1.05);
+        }
+
+        .copyright {
+            border-top: 1px solid #555;
+            padding-top: 20px;
+            margin-top: 30px;
+            text-align: center;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        .footer-desc {
+            color: #ddd;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #28a745;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+            color: white;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 80px 0;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .layer-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .carousel-slides {
+                height: 300px;
+            }
+            
+            .carousel-caption h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .page-header p {
+                font-size: 1.1rem;
+            }
+            
+            .layer-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .carousel-slides {
+                height: 250px;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAV START -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a href="index.html" class="navbar-brand"><img src="logo SAN .png" alt="SAN"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="main-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin/login.html">Admin Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- NAV END -->
+
+    <!-- PAGE HEADER -->
+    <section class="page-header section">
+        <div class="container">
+            <h1 class="fade-in-up">Our Products</h1>
+            <p class="fade-in-up">Premium quality agricultural products for modern farming</p>
+        </div>
+    </section>
+
+    <!-- CAROUSEL SECTION -->
+    
+
+    <!-- PRODUCT CATEGORIES -->
+    <section class="categories-section section">
+        <div class="container">
+            <div class="layer-title">
+                <h2>Product <span class="light-text">Categories</span></h2>
+                <p>Comprehensive range of agricultural products for all your farming needs</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="category-card fade-in-up">
+                        <div class="category-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3>Seeds</h3>
+                        <p>Certified high-yield seeds for various crops and seasons</p>
+                        <a href="#" class="btn button">Explore</a>
+                    </div>
+                </div>
+                <div class="category-card fade-in-up">
+                        <div class="category-icon">
+                            <i class="fas fa-spray-can"></i>
+                        </div>
+                        <h3>Fertilizers</h3>
+                        <p>Nutrient-rich fertilizers for optimal plant growth</p>
+                        <a href="#" class="btn button">Explore</a>
+                    </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="category-card fade-in-up">
+                        <div class="category-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <h3>Fertilizers</h3>
+                        <p>Nutrient-rich fertilizers for optimal plant growth</p>
+                        <a href="#" class="btn button">Explore</a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="category-card fade-in-up">
+                        <div class="category-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <h3>Fertilizers</h3>
+                        <p>Nutrient-rich fertilizers for optimal plant growth</p>
+                        <a href="#" class="btn button">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS GRID -->
+    <section class="products-grid section">
+        <div class="container">
+            <div class="layer-title">
+                <h2>Featured <span class="light-text">Products</span></h2>
+                <p>Best-selling agricultural products trusted by farmers nationwide</p>
+            </div>
+
+            <div class="row">
+                <!-- Seeds -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card fade-in-up">
+                        <div class="product-image" style="background: #28a745;">
+                            <i class="fas fa-wheat"></i>
+                        </div>
+                        <h4>KANAK Wheat Seeds</h4>
+                        <p>High-yield wheat seeds with 98% germination rate</p>
+                        <div class="price">₹1,250/kg</div>
+                        <a href="#" class="btn button">View Details</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card fade-in-up">
+                        <div class="product-image" style="background: #17a2b8;">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h4>Premium Rice Seeds</h4>
+                        <p>Disease-resistant rice varieties for better yield</p>
+                        <div class="price">₹1,100/kg</div>
+                        <a href="#" class="btn button">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Pesticides -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card fade-in-up">
+                        <div class="product-image" style="background: #ffc107;">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <h4>Organic Pesticide</h4>
+                        <p>Eco-friendly pest control for organic farming</p>
+                        <div class="price">₹450/liter</div>
+                        <a href="#" class="btn button">View Details</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card fade-in-up">
+                        <div class="product-image" style="background: #dc3545;">
+                            <i class="fas fa-spider"></i>
+                        </div>
+                        <h4>Insecticide Spray</h4>
+                        <p>Effective against common crop insects</p>
+                        <div class="price">₹380/liter</div>
+                        <a href="#" class="btn button">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Fertilizers -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card fade-in-up">
+                        <div class="product-image" style="background: #6f42c1;">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <h4>NPK Fertilizer</h4>
+                        <p>Balanced nutrient mix for all crops</p>
+                        <div class="price">₹650/kg</div>
+                        <a href="#" class="btn button">View Details</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card fade-in-up">
+                        <div class="product-image" style="background: #e83e8c;">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <h4>Organic Compost</h4>
+                        <p>100% natural compost for soil health</p>
+                        <div class="price">₹320/kg</div>
+                        <a href="#" class="btn button">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Machinery -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card fade-in-up">
+                        <div class="product-image" style="background: #fd7e14;">
+                            <i class="fas fa-tractor"></i>
+                        </div>
+                        <h4>Mini Tractor</h4>
+                        <p>Compact tractor for small to medium farms</p>
+                        <div class="price">₹2,85,000</div>
+                        <a href="#" class="btn button">View Details</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card fade-in-up">
+                        <div class="product-image" style="background: #20c997;">
+                            <i class="fas fa-toolbox"></i>
+                        </div>
+                        <h4>Irrigation Kit</h4>
+                        <p>Complete drip irrigation system</p>
+                        <div class="price">₹12,500</div>
+                        <a href="#" class="btn button">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-lg-5 col-md-6">
+                    <div class="footer-col">
+                        <figure class="footer-logo"></figure>
+                        <p class="footer-desc"><img loading="lazy" decoding="async" class="alignnone wp-image-541" src="logo SAN .png" alt="" width="100"></p>
+                        <p class="footer-desc">At <strong>SAINATH AGRO NEEDS</strong>, we pride ourselves on offering a diverse range of high-quality seeds, pesticides, and fertilizers to meet the needs of farmers across the country.</p>
+                    </div>
+                </div>
+                
+                <div class="col-xl-2 col-lg-2 col-md-6">
+                    <div class="footer-col">
+                        <h5>About Us</h5>
+                        <ul class="footer-bulletlist">
+                            <li><a href="about.html">Our Story</a></li>
+                            <li><a href="about.html">Mission & Vision</a></li>
+                            <li><a href="about.html">Team</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6">
+                    <div class="footer-col">
+                        <h5>Photo Gallery</h5>
+                        <ul class="footer-2-img">
+                            <li><img loading="lazy" decoding="async" src="images/g1-6.jpg" alt=""></li>
+                            <li><img loading="lazy" decoding="async" src="images/g1-5.jpg" alt=""></li>
+                            <li><img loading="lazy" decoding="async" src="images/g1-4.jpg" alt=""></li>
+                            <li><img loading="lazy" decoding="async" src="images/g1-3.jpg" alt=""></li>
+                            <li><img loading="lazy" decoding="async" src="images/g1-2.jpg" alt=""></li>
+                            <li><img loading="lazy" decoding="async" src="images/g1-1.jpg" alt=""></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-footer">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="copyright text-center">
+                            <p>Copyright © 2024 <strong>SAINATH AGRO NEEDS</strong> | GST No. 37AYMPM7048N1ZK | TIN No.:37637084550 | Pesticides L.No.: 2026/16 | M.B.T. Road, Near Market Yard, Mulakacheruvu (R.S.)- 517 390 | Call on 7670911715, 8919214082 | Mail: sainathagroneeds@gmail.com and info@sainathagroneeds.in</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- BACK TO TOP -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        // Simple and reliable carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const totalSlides = slides.length;
+            let carouselInterval;
+
+            // Function to show a specific slide
+            function showSlide(index) {
+                // Remove active class from all slides and indicators
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+                
+                // Add active class to current slide and indicator
+                slides[index].classList.add('active');
+                indicators[index].classList.add('active');
+                
+                currentSlide = index;
+            }
+
+            // Function to go to next slide
+            function nextSlide() {
+                let nextIndex = (currentSlide + 1) % totalSlides;
+                showSlide(nextIndex);
+            }
+
+            // Function to go to previous slide
+            function prevSlide() {
+                let prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+                showSlide(prevIndex);
+            }
+
+            // Start automatic sliding
+            function startAutoSlide() {
+                carouselInterval = setInterval(nextSlide, 4000); // Change slide every 4 seconds
+            }
+
+            // Stop automatic sliding
+            function stopAutoSlide() {
+                clearInterval(carouselInterval);
+            }
+
+            // Event listeners for navigation buttons
+            document.querySelector('.next-btn').addEventListener('click', function() {
+                nextSlide();
+                resetAutoSlide();
+            });
+
+            document.querySelector('.prev-btn').addEventListener('click', function() {
+                prevSlide();
+                resetAutoSlide();
+            });
+
+            // Event listeners for indicators
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', function() {
+                    showSlide(index);
+                    resetAutoSlide();
+                });
+            });
+
+            // Reset auto slide timer
+            function resetAutoSlide() {
+                stopAutoSlide();
+                startAutoSlide();
+            }
+
+            // Pause on hover
+            const carousel = document.querySelector('.product-carousel');
+            carousel.addEventListener('mouseenter', stopAutoSlide);
+            carousel.addEventListener('mouseleave', startAutoSlide);
+
+            // Initialize carousel
+            startAutoSlide();
+
+            // Back to top button
+            $(document).ready(function(){
+                $(window).scroll(function(){
+                    if ($(this).scrollTop() > 100) {
+                        $('.back-to-top').addClass('show');
+                    } else {
+                        $('.back-to-top').removeClass('show');
+                    }
+                });
+
+                $('.back-to-top').click(function(){
+                    $('html, body').animate({scrollTop: 0}, 800);
+                    return false;
+                });
+
+                // Add animation on scroll
+                function checkScroll() {
+                    $('.fade-in-up').each(function(){
+                        var position = $(this).offset().top;
+                        var scrollPosition = $(window).scrollTop() + $(window).height();
+                        
+                        if (position < scrollPosition - 50) {
+                            $(this).addClass('fade-in-up');
+                        }
+                    });
+                }
+
+                $(window).scroll(function(){
+                    checkScroll();
+                });
+
+                checkScroll(); // Initial check
+            });
+        });
+    </script>
+</body>
+</html>

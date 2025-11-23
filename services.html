@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - SAINATH AGRO NEEDS</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ===== BASE STYLES ===== */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .section {
+            scroll-margin-top: 80px;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            background: #28a745;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand img {
+            height: 50px;
+            border: 3px solid white;
+            border-radius: 50%;
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: white !important;
+            padding: 10px 15px !important;
+        }
+
+        .nav-link:hover {
+            color: #f8f9fa !important;
+            transform: translateY(-2px);
+        }
+
+        .nav-item.active .nav-link {
+            color: #ffeb3b !important;
+            font-weight: 600;
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-header {
+            background: url('images/slider-bg-new-2.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .page-header .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== SERVICES SECTION ===== */
+        .services-section {
+            padding: 80px 0;
+        }
+
+        .layer-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .layer-title h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .layer-title .light-text {
+            color: #666;
+            font-weight: 300;
+        }
+
+        .layer-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .service-item {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 40px 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .pwl-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: #28a745;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover .pwl-icon {
+            transform: scale(1.1);
+        }
+
+        .pwl-icon img {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+
+        .pwl-caption h5 {
+            color: #28a745;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .pwl-caption p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        /* ===== ADDITIONAL SERVICES ===== */
+        .additional-services {
+            background: #f8f9fa;
+            padding: 60px 0;
+            margin: 60px 0;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: #28a745;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-icon i {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .service-card h4 {
+            color: #28a745;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .btn.button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn.button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            color: white;
+            text-decoration: none;
+            background: #218838;
+        }
+
+        /* ===== FOOTER STYLES ===== */
+        .footer-area {
+            background: #333;
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-col h5 {
+            color: #28a745;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .footer-bulletlist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-bulletlist li {
+            margin-bottom: 12px;
+            padding-left: 0;
+        }
+
+        .footer-bulletlist a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .footer-bulletlist a:hover {
+            color: #28a745;
+            transform: translateX(5px);
+        }
+
+        .footer-2-img {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .footer-2-img li {
+            flex: 0 0 calc(33.333% - 8px);
+        }
+
+        .footer-2-img img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-2-img img:hover {
+            transform: scale(1.05);
+        }
+
+        .copyright {
+            border-top: 1px solid #555;
+            padding-top: 20px;
+            margin-top: 30px;
+            text-align: center;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        .footer-desc {
+            color: #ddd;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #28a745;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+            color: white;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 80px 0;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .layer-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .service-item, .service-card {
+                padding: 25px 20px;
+            }
+            
+            .pwl-caption h5 {
+                text-align: left;
+            }
+            
+            .pwl-caption p {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .page-header p {
+                font-size: 1.1rem;
+            }
+            
+            .layer-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAV START -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a href="index.html" class="navbar-brand"><img src="logo SAN .png" alt="SAN"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="main-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin/login.html">Admin Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- NAV END -->
+
+    <!-- PAGE HEADER -->
+    <section class="page-header section">
+        <div class="container">
+            <h1 class="fade-in-up">Our Services</h1>
+            <p class="fade-in-up">Comprehensive agricultural solutions tailored to your farming needs</p>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services-section section">
+        <div class="container">
+            <div class="layer-title">
+                <h2>Our <span class="light-text">Core Services</span></h2>
+                <p>Expert agricultural services designed to maximize your farming success</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="service-item fade-in-up">
+                        <div class="row align-items-center">
+                            <div class="col-md-3 text-center">
+                                <figure class="pwl-icon">
+                                    <img src="images/farmer.svg" alt="Industry Expertise">
+                                </figure>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="pwl-caption">
+                                    <h5>Industry Expertise</h5>
+                                    <p>With years of experience in the seed industry, we bring expert knowledge and innovation to our product development. Our team of agricultural specialists understands the unique challenges faced by farmers and provides tailored solutions to maximize your yield and profitability.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="service-item fade-in-up">
+                        <div class="row align-items-center">
+                            <div class="col-md-3 text-center">
+                                <figure class="pwl-icon">
+                                    <img src="images/medal.svg" alt="Certified Quality">
+                                </figure>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="pwl-caption">
+                                    <h5>Certified Quality</h5>
+                                    <p>All our seeds, including KANAK SEED, are nationally certified, ensuring the highest standards of purity and performance. We maintain strict quality control measures throughout our supply chain to guarantee that you receive only the best products for your farm.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="service-item fade-in-up">
+                        <div class="row align-items-center">
+                            <div class="col-md-3 text-center">
+                                <figure class="pwl-icon">
+                                    <img src="images/fruits.svg" alt="Sustainable Practices">
+                                </figure>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="pwl-caption">
+                                    <h5>Sustainable Practices</h5>
+                                    <p>We promote sustainable agriculture by offering seeds that enhance productivity while supporting environmental conservation. Our products are designed to minimize the need for excessive chemical inputs, helping you farm responsibly while maintaining high yields.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="service-item fade-in-up">
+                        <div class="row align-items-center">
+                            <div class="col-md-3 text-center">
+                                <figure class="pwl-icon">
+                                    <img src="images/agronomy.svg" alt="Tested and Proven">
+                                </figure>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="pwl-caption">
+                                    <h5>Tested and Proven</h5>
+                                    <p>Each seed variety undergoes rigorous testing and trials to ensure it performs exceptionally well in the field. We conduct extensive field trials across different regions and climatic conditions to validate the performance of our products before bringing them to market.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="service-item fade-in-up">
+                        <div class="row align-items-center">
+                            <div class="col-md-3 text-center">
+                                <figure class="pwl-icon">
+                                    <img src="images/wheat.svg" alt="Reliable Supply Chain">
+                                </figure>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="pwl-caption">
+                                    <h5>Reliable Supply Chain</h5>
+                                    <p>We ensure that our seeds are available when you need them, thanks to our robust and reliable supply chain network. Our efficient distribution system guarantees timely delivery of quality products to farmers across the country, regardless of their location.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADDITIONAL SERVICES -->
+    <section class="additional-services section">
+        <div class="container">
+            <div class="layer-title">
+                <h2>Additional <span class="light-text">Support Services</span></h2>
+                <p>Comprehensive support to ensure your farming success</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h4>Seed Consultation</h4>
+                        <p>Expert guidance on selecting the right seeds for your specific soil type, climate conditions, and farming objectives.</p>
+                        <a href="contact.html" class="btn button mt-3">Get Consultation</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h4>Agricultural Advisory</h4>
+                        <p>Professional advice on crop management, pest control, and sustainable farming practices for optimal results.</p>
+                        <a href="contact.html" class="btn button mt-3">Get Advice</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h4>Supply Chain Support</h4>
+                        <p>Reliable and timely delivery of agricultural inputs to ensure you have what you need when you need it.</p>
+                        <a href="contact.html" class="btn button mt-3">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-lg-5 col-md-6">
+                    <div class="footer-col">
+                        <figure class="footer-logo"></figure>
+                        <p class="footer-desc"><img loading="lazy" decoding="async" class="alignnone wp-image-541" src="images/Logo-1-1024x346.png" alt="" width="300"></p>
+                        <p class="footer-desc">At <strong>SAINATH AGRO NEEDS</strong>, we pride ourselves on offering a diverse range of high-quality seeds, pesticides, and fertilizers to meet the needs of farmers across the country.</p>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-6">
+                    <div class="footer-col">
+                        <h5>Quick Links</h5>
+                        <ul class="footer-bulletlist">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="products.html">Products</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-6">
+                    <div class="footer-col">
+                        <h5>Our Services</h5>
+                        <ul class="footer-bulletlist">
+                            <li><a href="services.html">Seed Consultation</a></li>
+                            <li><a href="services.html">Agricultural Advisory</a></li>
+                            <li><a href="services.html">Supply Chain Support</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6">
+                    <div class="footer-col">
+                        <h5>Photo Gallery</h5>
+                        <ul class="footer-2-img">
+                            <li><img loading="lazy" decoding="async" src="images/g1-6.jpg" alt=""></li>
+                            <li><img loading="lazy" decoding="async" src="images/g1-5.jpg" alt=""></li>
+                            <li><img loading="lazy" decoding="async" src="images/g1-4.jpg" alt=""></li>
+                            <li><img loading="lazy" decoding="async" src="images/g1-3.jpg" alt=""></li>
+                            <li><img loading="lazy" decoding="async" src="images/g1-2.jpg" alt=""></li>
+                            <li><img loading="lazy" decoding="async" src="images/g1-1.jpg" alt=""></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-footer">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="copyright text-center">
+                            <p>Copyright © 2024 <strong>SAINATH AGRO NEEDS</strong> | GST No. 37AYMPM7048N1ZK | TIN No.:37637084550 | Pesticides L.No.: 2026/16 | M.B.T. Road, Near Market Yard, Mulakacheruvu (R.S.)- 517 390 | Call on 7670911715, 8919214082 | Mail: sainathagroneeds@gmail.com and info@sainathagroneeds.in</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        // Back to top button
+        $(document).ready(function(){
+            $(window).scroll(function(){
+                if ($(this).scrollTop() > 100) {
+                    $('.back-to-top').addClass('show');
+                } else {
+                    $('.back-to-top').removeClass('show');
+                }
+            });
+
+            $('.back-to-top').click(function(){
+                $('html, body').animate({scrollTop: 0}, 800);
+                return false;
+            });
+
+            // Add animation on scroll
+            function checkScroll() {
+                $('.fade-in-up').each(function(){
+                    var position = $(this).offset().top;
+                    var scrollPosition = $(window).scrollTop() + $(window).height();
+                    
+                    if (position < scrollPosition - 50) {
+                        $(this).addClass('fade-in-up');
+                    }
+                });
+            }
+
+            $(window).scroll(function(){
+                checkScroll();
+            });
+
+            checkScroll(); // Initial check
+        });
+    </script>
+</body>
+</html>
