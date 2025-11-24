@@ -1,852 +1,534 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-US">
 <head>
-    <!-- Meta Tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="images/logo.png">
-    <title>SAINATH AGRO NEEDS</title>
-    
-    <!-- CSS Stylesheets -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/stylesheet.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        /* ===== YELLOW-GREEN COLOR VARIABLES ===== */
-        :root {
-            --primary-yellow: #9acd32; /* Yellow Green */
-            --primary-dark: #7cb518; /* Darker Yellow Green */
-            --accent-yellow: #d4e157; /* Light Yellow Green */
-            --light-yellow: #f1f8e9; /* Very Light Yellow Green */
-            --dark-green: #558b2f; /* Dark Green for contrast */
-            --text-dark: #2e3a1f; /* Dark text for readability */
-            --text-light: #5a6c3d; /* Light text */
-            --white: #ffffff;
-            --light-gray: #f8f9fa;
-        }
-
-        /* ===== BASE STYLES ===== */
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            background: var(--white);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .section {
-            scroll-margin-top: 80px;
-        }
-
-        /* ===== NAVIGATION ===== */
-        .navbar {
-            background: var(--primary-yellow);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .navbar-brand img {
-            height: 50px;
-            border: 3px solid var(--white);
-            border-radius: 50%;
-        }
-
-        .nav-link {
-            transition: all 0.3s ease;
-            font-weight: 500;
-            color: var(--white) !important;
-            padding: 10px 15px !important;
-        }
-
-        .nav-link:hover {
-            color: var(--light-yellow) !important;
-            transform: translateY(-2px);
-        }
-
-        .nav-item.active .nav-link {
-            color: var(--dark-green) !important;
-            font-weight: 600;
-            background: var(--accent-yellow);
-            border-radius: 4px;
-        }
-
-        /* ===== SLIDER STYLES ===== */
-        .home-slider {
-            position: relative;
-        }
-
-        .hero-slider {
-            position: relative;
-            height: 600px;
-            overflow: hidden;
-        }
-
-        .carousel-cell {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .carousel-cell.active {
-            opacity: 1;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(46, 58, 31, 0.6); /* Dark green overlay */
-        }
-
-        .slider-caption {
-            position: relative;
-            z-index: 2;
-            color: var(--white);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .slider-caption .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            font-weight: 400;
-        }
-
-        .slider-caption .title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 25px;
-            line-height: 1.2;
-        }
-
-        .color-text {
-            color: var(--primary-yellow);
-        }
-
-        .slider-btn {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .btn.button {
-            background: var(--primary-yellow);
-            color: var(--text-dark);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn.button:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(154, 205, 50, 0.3);
-            color: var(--white);
-            text-decoration: none;
-        }
-
-        .btn-outline-white {
-            background: transparent;
-            border: 2px solid var(--white);
-            color: var(--white);
-            padding: 12px 25px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn-outline-white:hover {
-            background: var(--white);
-            color: var(--primary-yellow);
-            transform: translateY(-2px);
-        }
-
-        /* ===== SERVICE BOX STYLES ===== */
-        .service-box {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(154, 205, 50, 0.15);
-            text-align: center;
-            transition: all 0.3s ease;
-            margin-bottom: 30px;
-            border-top: 3px solid var(--primary-yellow);
-        }
-
-        .service-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(154, 205, 50, 0.25);
-        }
-
-        .sb-icon {
-            margin-bottom: 20px;
-        }
-
-        .sb-icon img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-        }
-
-        .sb-caption h4 {
-            color: var(--primary-dark);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .sb-caption p {
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* ===== LAYER TITLE STYLES ===== */
-        .layer-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .layer-title h2 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--text-dark);
-        }
-
-        .layer-title .light-text {
-            color: var(--primary-yellow);
-            font-weight: 600;
-        }
-
-        .layer-title p {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* ===== PARALLAX SECTION STYLES ===== */
-        .parallax-wide-layer {
-            background: var(--light-yellow);
-            padding: 80px 0;
-            border-radius: 8px;
-            margin: 60px 0;
-        }
-
-        .pwl-content h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--text-dark);
-        }
-
-        .pwl-content .light-text {
-            color: var(--primary-yellow);
-        }
-
-        .pwl-content p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 40px;
-        }
-
-        .parallax-carousel .item {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .pwl-icon {
-            margin-bottom: 20px;
-        }
-
-        .pwl-icon img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-        }
-
-        .pwl-caption h5 {
-            color: var(--primary-dark);
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .pwl-caption p {
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* ===== COUNTER STYLES ===== */
-        .ag-ws-parallax {
-            background: var(--light-yellow) !important;
-            padding: 80px 0;
-            position: relative;
-        }
-
-        .counter-inner-box {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(154, 205, 50, 0.15);
-            text-align: center;
-            margin-bottom: 30px;
-            transition: all 0.3s ease;
-            border-top: 3px solid var(--primary-yellow);
-        }
-
-        .counter-inner-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(154, 205, 50, 0.25);
-        }
-
-        .counter {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 10px;
-        }
-
-        .counter-inner-box p {
-            margin: 0;
-            font-weight: 500;
-            color: var(--text-light);
-        }
-
-        /* ===== GALLERY STYLES ===== */
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(154, 205, 50, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 2px solid var(--light-yellow);
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(154, 205, 50, 0.25);
-            border-color: var(--primary-yellow);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        /* ===== TESTIMONIAL STYLES ===== */
-        .testimonials-parallax {
-            background: var(--light-yellow);
-            padding: 80px 0;
-        }
-
-        .testimonials-box {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(154, 205, 50, 0.15);
-            margin-bottom: 30px;
-            border-left: 4px solid var(--primary-yellow);
-        }
-
-        .rating {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            margin-bottom: 15px;
-        }
-
-        .rating li {
-            margin-right: 5px;
-        }
-
-        .rating i {
-            color: var(--primary-yellow);
-        }
-
-        .client-testimonial {
-            color: var(--text-light);
-            font-style: italic;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .testimonials-box .media img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .testimonials-box .media-body h5 {
-            color: var(--primary-dark);
-            font-weight: 600;
-        }
-
-        .testimonials-box .media-body p {
-            color: var(--text-light);
-            margin: 0;
-        }
-
-        /* ===== CONTACT STYLES ===== */
-        .contact-info {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(154, 205, 50, 0.15);
-            margin-bottom: 30px;
-            border-left: 4px solid var(--primary-yellow);
-        }
-
-        .contact-info h4 {
-            color: var(--primary-dark);
-            margin-bottom: 25px;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .contact-details {
-            list-style: none;
-            padding: 0;
-        }
-
-        .contact-details li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-start;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--light-yellow);
-        }
-
-        .contact-details li:last-child {
-            border-bottom: none;
-        }
-
-        .contact-details i {
-            margin-right: 15px;
-            color: var(--primary-yellow);
-            font-size: 1.2rem;
-            margin-top: 5px;
-            min-width: 20px;
-        }
-
-        .contact-form {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(154, 205, 50, 0.15);
-            border-left: 4px solid var(--primary-yellow);
-        }
-
-        .contact-form h4 {
-            color: var(--primary-dark);
-            margin-bottom: 25px;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-yellow);
-            box-shadow: 0 0 0 0.2rem rgba(154, 205, 50, 0.25);
-        }
-
-        /* ===== FOOTER STYLES ===== */
-        .footer-area {
-            background: var(--text-dark);
-            color: var(--white);
-            padding: 50px 0 20px;
-            margin-top: 80px;
-        }
-
-        .footer-col h3 {
-            color: var(--primary-yellow);
-            margin-bottom: 25px;
-            font-size: 1.3rem;
-            font-weight: 900;
-        }
-
-        .footer-bulletlist {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-bulletlist li {
-            margin-bottom: 12px;
-            padding-left: 0;
-        }
-
-        .footer-bulletlist a {
-            color: var(--light-yellow);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: block;
-            padding: 5px 0;
-        }
-
-        .footer-bulletlist a:hover {
-            color: var(--primary-yellow);
-            transform: translateX(5px);
-        }
-
-        .footer-2-img {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .footer-2-img li {
-            flex: 0 0 calc(33.333% - 8px);
-        }
-
-        .footer-2-img img {
-            width: 100%;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 6px;
-            transition: transform 0.3s ease;
-            border: 2px solid var(--primary-yellow);
-        }
-
-        .footer-2-img img:hover {
-            transform: scale(1.05);
-        }
-
-        .copyright {
-            border-top: 1px solid var(--primary-yellow);
-            padding-top: 20px;
-            margin-top: 30px;
-            text-align: center;
-            color: var(--accent-yellow);
-            font-size: 0.9rem;
-        }
-
-        .footer-desc {
-            color: var(--light-yellow);
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        /* ===== BACK TO TOP ===== */
-        .cd-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--primary-yellow);
-            color: var(--text-dark);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            font-weight: bold;
-        }
-
-        .cd-top.show {
-            opacity: 1;
-        }
-
-        .cd-top:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(154, 205, 50, 0.4);
-            color: var(--text-dark);
-            background: var(--accent-yellow);
-        }
-
-        /* ===== RESPONSIVE DESIGN ===== */
-        @media (max-width: 768px) {
-            .slider-caption .title {
-                font-size: 2.5rem;
-            }
-            
-            .layer-title h2 {
-                font-size: 2.2rem;
-            }
-            
-            .service-box, .counter-inner-box, .testimonials-box {
-                padding: 25px 20px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .slider-caption .title {
-                font-size: 2rem;
-            }
-            
-            .layer-title h2 {
-                font-size: 1.8rem;
-            }
-            
-            .slider-btn {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            animation: fadeInUp 0.6s ease-out;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SAINATH AGRO NEEDS — Quality Seeds & Agri Solutions</title>
+  <meta name="description" content="Sainath Agro Needs — high quality seeds, fertilizers and crop solutions. Empowering farmers with sustainable products and expert advisory." />
+  <link rel="shortcut icon" href="images/Favicon.png">
+
+  <!-- Bootstrap 5 & FontAwesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Optional local CSS (keep if you have) -->
+  <link rel="stylesheet" href="css/stylesheet.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    :root{
+      --primary-yellow: #9acd32;
+      --primary-dark: #7cb518;
+      --accent-yellow: #d4e157;
+      --light-yellow: #f1f8e9;
+      --text-dark: #2e3a1f;
+      --text-light: #5a6c3d;
+      --white: #ffffff;
+    }
+    html,body{height:100%}
+    body {
+      font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--text-dark);
+      background:#fff;
+      margin:0;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* -------- NAVBAR (matching your About style) -------- */
+    .navbar {
+      background: var(--primary-yellow);
+      padding: 14px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .navbar .navbar-brand img{ height:52px; border-radius:50%; border:3px solid #fff; }
+    .navbar .nav-link{ color:#fff !important; font-weight:600; padding:8px 12px; transition:all .25s;}
+    .navbar .nav-link:hover{ color:var(--light-yellow) !important; transform:translateY(-3px); }
+    .navbar .nav-item.active .nav-link { color:var(--text-dark) !important; background:var(--accent-yellow); border-radius:6px; padding:6px 12px; }
+
+    /* ===== HERO ===== */
+    .hero {
+      background-image: url('images/ag-pic-13.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      min-height: 64vh;
+      display:flex;
+      align-items:center;
+      color:#fff;
+    }
+    .hero::before{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(46,58,31,0.55), rgba(46,58,31,0.55)); }
+    .hero .hero-inner{ position:relative; z-index:2; padding:60px 0;}
+    .hero h1{ font-size:2.8rem; font-weight:800; line-height:1.05; margin-bottom:16px;}
+    .hero p.lead{ font-size:1.05rem; color:rgba(255,255,255,0.94); margin-bottom:20px;}
+
+    .btn-primary-brand {
+      background:var(--primary-yellow);
+      border:0;
+      color:var(--text-dark);
+      font-weight:700;
+      padding:12px 26px;
+      border-radius:8px;
+    }
+    .btn-outline-white {
+      border:2px solid rgba(255,255,255,0.95);
+      color:#fff; background:transparent; padding:10px 20px; border-radius:8px;
+    }
+
+    /* ===== ICON CARDS ===== */
+    .feature {
+      background:#fff;
+      border-radius:10px;
+      padding:22px;
+      box-shadow:0 8px 20px rgba(34,60,34,0.06);
+      transition:transform .25s, box-shadow .25s;
+      border-top:4px solid var(--primary-yellow);
+    }
+    .feature:hover{ transform:translateY(-6px); box-shadow:0 16px 40px rgba(34,60,34,0.08); }
+
+    .feature .icon-wrap{
+      width:70px; height:70px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:var(--light-yellow); margin-bottom:14px;
+      border:2px solid rgba(154,205,50,0.15);
+    }
+    .feature h5{ color:var(--primary-dark); font-weight:700; margin-bottom:8px; }
+
+    /* ===== PRODUCT CAROUSEL (simple auto-scroll) ===== */
+    .product-strip {
+      overflow:hidden; border-radius:12px; border:3px solid var(--primary-yellow); padding:8px; background:linear-gradient(180deg,#fff, #fbfdf6);
+    }
+    .product-track { display:flex; gap:14px; align-items:center; animation:scroll 24s linear infinite; }
+    .product-card { flex:0 0 260px; background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.06); }
+    .product-card img{ width:100%; height:160px; object-fit:cover; display:block; }
+    .product-card .body { padding:12px; }
+    @keyframes scroll { 0% { transform:translateX(0)} 100% { transform:translateX(-50%)} }
+    .product-strip:hover .product-track { animation-play-state:paused; }
+
+    /* ===== PARTNERS ===== */
+    .partners img { max-height:64px; filter:grayscale(0.1); opacity:0.95; }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonial { background:var(--light-yellow); border-radius:10px; padding:20px; border-left:4px solid var(--primary-yellow); }
+
+    /* ===== NEWSLETTER ===== */
+    .newsletter { background: linear-gradient(180deg, #fff, #fbfbef); padding:28px; border-radius:12px; border:2px solid rgba(154,205,50,0.12); }
+
+    /* ===== FOOTER ===== */
+    .footer { background:var(--text-dark); color:#fff; padding:40px 0; }
+    .footer a { color:var(--light-yellow); text-decoration:none; }
+    .footer a:hover { color:var(--primary-yellow); }
+
+    /* ===== small tweaks ===== */
+    @media (max-width: 992px){
+      .hero h1{ font-size:2.2rem; }
+      .hero p.lead{ font-size:1rem; }
+    }
+    @media (max-width: 576px){
+      .hero{ min-height:48vh; padding:40px 0; }
+      .product-card{ flex:0 0 200px }
+    }
+  </style>
 </head>
+<body>
 
-<body class="home page-template page-template-page-templates page-template-home-3-template page-template-page-templateshome-3-template-php page page-id-65 elementor-default elementor-kit-20 elementor-page elementor-page-65">
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.png" alt="SAINATH AGRO NEEDS">
+      </a>
 
-    <!-- start preloader -->
-    <div id="loader-wrapper">
-        <div class="loader">
-           <div class="ball"></div>
-           <div class="ball"></div>
-           <div class="ball"></div>
-           <div class="ball"></div>
-           <div class="ball"></div>
-           <div class="ball"></div>
-           <div class="ball"></div>
-           <div class="ball"></div>
-           <div class="ball"></div>
-           <div class="ball"></div>
-        </div> 
+      <!-- Bootstrap 5 data attributes -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div id="main-nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item ms-2"><a class="btn btn-sm btn-primary-brand" href="admin/login.html">Admin Login</a></li>
+        </ul>
+      </div>
     </div>
-    <!-- PRELOADER END -->
-      
-    <header>
-        <!-- NAV START -->
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container p-0">
-                <a href="#" class="navbar-brand"><img src="logo SAN .png" alt="SAN" style="border: 3px solid white; border-radius: 50%;"></a>
-                
-                <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
-                    <span class="menu-icon-bar"></span>
-                    <span class="menu-icon-bar"></span>
-                    <span class="menu-icon-bar"></span>
-                </button>
+  </nav>
 
-                <div id="main-nav" class="collapse navbar-collapse">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a title="Home" href="index.html" class="nav-item nav-link">Home</a></li>
-                        <li class="nav-item"><a title="About Us" href="about.html" class="nav-item nav-link">About Us</a></li>
-                        <li class="nav-item"><a title="Products" href="products.html" class="nav-item nav-link">Products</a></li>
-                        <li class="nav-item"><a title="Services" href="services.html" class="nav-item nav-link">Services</a></li>
-                        <li class="nav-item"><a title="Crop Field Gallery" href="gallery.html" class="nav-item nav-link">Crop Field Gallery</a></li>
-                        <li class="nav-item"><a title="Contact Us" href="contact.html" class="nav-item nav-link">Contact Us</a></li>
-                        <li class="nav-item"><a title="Admin Login" href="admin/login.html" class="nav-item nav-link">Admin Login</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- NAV END -->
-
-        <!--SLIDER START-->
-        <div class="home-slider">
-            <div class="hero-slider" data-carousel="">
-                <div class="carousel-cell active" style="background-image:url(images-1/slide1.jpg);">
-                    <div class="overlay"></div>
-                    <div class="container slider-caption">
-                        <h5 class="subtitle">Empowering Sustainable Farming</h5>
-                        <h2 class="title">Trusted  <br> <span class="color-text">Quality </span> <span class="color-text">Seeds</span></h2>
-                        <div class="slider-btn">
-                            <a href="contact.html" class="btn button btn-outline-white">Contact Us</a>
-                            <div class="btn-popup">
-                                <a class="popup-youtube" href="contact.html">
-                                    <div class="pulse"><i class="fas fa-play"></i></div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-cell" style="background-image:url(images-1/slide2.jpg);">
-                    <div class="overlay"></div>
-                    <div class="container slider-caption">
-                        <h5 class="subtitle">Commitment to Seed Quality</h5>
-                        <h2 class="title">Farmer's <br> <span class="color-text">Reliable Partner </span></h2>
-                        <div class="slider-btn">
-                            <a href="contact.html" class="btn button btn-outline-white">Contact Us</a>
-                            <div class="btn-popup">
-                                <a class="popup-youtube" href="#">
-                                    <div class="pulse"><i class="fas fa-play"></i></div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-cell" style="background-image:url(images-1/slide3.jpg);">
-                    <div class="overlay"></div>
-                    <div class="container slider-caption">
-                        <h5 class="subtitle">Driving Agricultural Success</h5>
-                        <h2 class="title">Innovating <br> <span class="color-text">Agriculture </span> Together</h2>
-                        <div class="slider-btn">
-                            <a href="contact.html" class="btn button btn-outline-white">Contact Us</a>
-                            <div class="btn-popup">
-                                <a class="popup-youtube" href="#">
-                                    <div class="pulse"><i class="fas fa-play"></i></div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container hero-inner">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h1>Trusted <span style="color:var(--primary-yellow)">Quality Seeds</span> & Sustainable Farming Solutions</h1>
+          <p class="lead">Sainath Agro Needs provides certified seeds, eco-friendly fertilizers and expert advisory to help farmers increase yield and protect the environment.</p>
+          <div class="d-flex gap-3">
+            <a href="contact.html" class="btn btn-primary-brand">Contact Us</a>
+            <a href="products.html" class="btn btn-outline-white">Explore Products</a>
+          </div>
+       
         </div>
-        <!--SLIDER END-->
-    </header>
+        
+      </div>
+    </div>
+  </header>
 
-    <!-- FOOTER (original content preserved) -->
-        <footer class="footer-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-5 col-lg-5 col-md-6">
-                        <div class="footer-col">
-                            <figure class="footer-logo"></figure>
-							<p class="footer-desc"><img loading="lazy" decoding="async" class="alignnone wp-image-541" src="images/logo.png" alt="" width="100"></p>
-                            <p><h5>SAINATH ARGO NEEDS</h5></p>
-                            <p class="footer-desc">At <strong>SAINATH AGRO NEEDS</strong>, we pride ourselves on offering a diverse range of high-quality seeds, pesticides, and fertilizers to meet the needs of farmers across the country.</p>
-                        </div>
-                    </div>
+  <!-- FEATURES / WHY US -->
+  <section class="py-5">
+    <div class="container">
+      <div class="layer-title text-center mb-4">
+        <h2>Why <span class="light-text" style="color:var(--primary-yellow)">Choose Us</span></h2>
+        <p class="text-muted">Experience, quality and sustainable solutions tailored to Indian farming needs</p>
+      </div>
 
-                    <div class="col-xl-2 col-lg-2 col-md-6">
-                        <div class="footer-col">
-                            <h5>About Us</h5>
-                            <ul class="footer-bulletlist">
-                                <li><a href="about.html">Our Story</a></li>
-                                <li><a href="about.html">Mission & Vision</a></li>
-                                <li><a href="about.html">Team</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-6">
-                        <div class="footer-col">
-                            <h5>Photo Gallery</h5>
-                            <ul class="footer-2-img">
-                                <li><img loading="lazy" decoding="async" src="image/frame2/4.jpg" alt=""></li>
-                                <li><img loading="lazy" decoding="async" src="image/frame4/3.jpg" alt=""></li>
-                                <li><img loading="lazy" decoding="async" src="image/frame3/8.jpg" alt=""></li>
-                                <li><img loading="lazy" decoding="async" src="image/frame6/9.jpg" alt=""></li>
-                                <li><img loading="lazy" decoding="async" src="image/frame1/1.jpg" alt=""></li>
-                                <li><img loading="lazy" decoding="async" src="image/frame5/1.jpg" alt=""></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="bottom-footer">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="copyright text-center">
-                                <p>Copyright © 2024 <strong>SAINATH AGRO NEEDS</strong> | GST No. 37AYMPM7049N12K | TIN No.:37837084590 | Pesticides L.No.: 2029/16 | M.B.T. Road, Near Market Yard, Muhaksoheruvu (R.S.) - 517 360 | Call on 7670911715, 8910214082 | Mail: samathagroneedi@gmail.com and info@sainathagroneedi.in</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="feature text-center p-4 h-100">
+            <div class="icon-wrap mx-auto"><img src="images/farmer.svg" alt="expert" width="36"></div>
+            <h5>Industry Expertise</h5>
+            <p class="text-muted">Decades of combined experience in seed development, field trials and farmer support.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="feature text-center p-4 h-100">
+            <div class="icon-wrap mx-auto"><img src="images/medal.svg" alt="quality" width="36"></div>
+            <h5>Certified Quality</h5>
+            <p class="text-muted">All seeds are nationally certified and tested across multiple agro-climatic zones.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="feature text-center p-4 h-100">
+            <div class="icon-wrap mx-auto"><img src="images/fruits.svg" alt="sustain" width="36"></div>
+            <h5>Sustainable Practices</h5>
+            <p class="text-muted">Products designed to reduce chemical use, conserve water and improve soil health.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT STRIP -->
+  <section class="py-4" style="background:var(--light-yellow);">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0">Product Highlights</h4>
+        <small class="text-muted">Trusted by thousands of farmers</small>
+      </div>
+
+      <div class="product-strip">
+        <div class="product-track">
+          <!-- sequence 1 -->
+          <div class="product-card">
+            <img src="image/frame7/1.jpg" alt="Kanak Wheat">
+            <div class="body">
+              <strong>KANAK Wheat Seeds</strong>
+              <div class="text-muted small">High germination rate; drought-tolerant</div>
             </div>
-        </footer>
-    <!--SCROLL TOP START-->
-    <a href="#0" class="cd-top">Top</a>
+          </div>
 
-    <!-- Your existing JavaScript files -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
+          <div class="product-card">
+            <img src="image/frame7/2.jpg" alt="Rice">
+            <div class="body">
+              <strong>Premium Rice Seeds</strong>
+              <div class="text-muted small">Disease resistant varieties</div>
+            </div>
+          </div>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add smooth scrolling to all links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    // Don't prevent default for # links (home)
-                    if (this.getAttribute('href') !== '#') {
-                        e.preventDefault();
-                        
-                        const targetId = this.getAttribute('href');
-                        
-                        const targetElement = document.querySelector(targetId);
-                        if (targetElement) {
-                            targetElement.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                        }
-                    }
-                });
-            });
-            
-            // Add section class to all major sections for proper scrolling
-            const sections = document.querySelectorAll('.elementor-section');
-            sections.forEach(section => {
-                section.classList.add('section');
-            });
+          <div class="product-card">
+            <img src="image/frame7/3.jpg" alt="Fertilizer">
+            <div class="body">
+              <strong>Balanced Fertilizers</strong>
+              <div class="text-muted small">NPK formulations for better yield</div>
+            </div>
+          </div>
 
-            // Back to top button
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 100) {
-                    document.querySelector('.cd-top').classList.add('show');
-                } else {
-                    document.querySelector('.cd-top').classList.remove('show');
-                }
-            });
+          <div class="product-card">
+            <img src="image/frame7/4.jpg" alt="Tools">
+            <div class="body">
+              <strong>Farming Tools</strong>
+              <div class="text-muted small">Durable tools to help in daily farm work</div>
+            </div>
+          </div>
 
-            document.querySelector('.cd-top').addEventListener('click', function(e) {
-                e.preventDefault();
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
+          <div class="product-card">
+            <img src="image/frame7/5.jpg" alt="BioFert">
+            <div class="body">
+              <strong>Bio-Fertilizers</strong>
+              <div class="text-muted small">Eco-friendly soil enhancers</div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="image/frame7/6.jpg" alt="Advisory">
+            <div class="body">
+              <strong>Advisory Services</strong>
+              <div class="text-muted small">Crop planning & pest management</div>
+            </div>
+          </div>
+
+          <!-- duplicate sequence for seamless scroll -->
+          <div class="product-card">
+            <img src="image/frame7/1.jpg" alt="Kanak Wheat">
+            <div class="body">
+              <strong>KANAK Wheat Seeds</strong>
+              <div class="text-muted small">High germination rate; drought-tolerant</div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="image/frame7/2.jpg" alt="Rice">
+            <div class="body">
+              <strong>Premium Rice Seeds</strong>
+              <div class="text-muted small">Disease resistant varieties</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PARALLAX-LIKE CENTER PROMO -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row align-items-center gx-5">
+        <div class="col-lg-7">
+          <div class="pwl-content">
+            <h2>Partnered With Trusted Agro Companies</h2>
+            <p class="text-muted">We work with reputable private seed & fertilizer companies across Andhra Pradesh to ensure timely availability and high standards.</p>
+
+            <ul class="list-unstyled mt-3">
+              <li class="mb-2"><strong>Kurnool Seeds Pvt Ltd (KSPL)</strong></li>
+              <li class="mb-2"><strong>Omkar Fertilisers Pvt Ltd (West Godavari)</strong></li>
+              <li class="mb-2"><strong>Sri Rama Agri Genetics (Eluru)</strong></li>
+              <li class="mb-2"><strong>Sri Sesha Sai Agro Seeds (Guntur)</strong></li>
+              <li class="mb-2"><strong>Sri Venkateswara Seeds & Fertilisers (Nellore)</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="newsletter">
+            <h5>Get Crop Tips & Offers</h5>
+            <p class="text-muted">Subscribe for seasonal advisories, product discounts and free trials.</p>
+            <form id="newsletterForm" class="row g-2">
+              <div class="col-12">
+                <input type="email" class="form-control" placeholder="Your email address" required>
+              </div>
+              <div class="col-12 d-grid">
+                <button class="btn btn-primary-brand" type="submit">Subscribe</button>
+              </div>
+              <div id="newsletterMsg" class="form-text mt-2 text-success d-none">Thanks — you're subscribed!</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="py-5" style="background:var(--light-yellow);">
+    <div class="container">
+      <div class="layer-title text-center mb-4">
+        <h2>Farmers <span style="color:var(--primary-yellow)">Testimonials</span></h2>
+        <p class="text-muted">Real experiences from farmers who switched to our seeds</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="testimonial">
+            <p class="mb-2"><i class="fas fa-quote-left me-2 text-primary"></i> "Yield improved and water needs reduced. Great support from the team."</p>
+            <div class="d-flex align-items-center mt-3">
+              <img src="image/frame1/1.jpg" alt="" class="rounded-circle me-3" width="48" height="48" style="object-fit:cover">
+              <div>
+                <strong>Raju Kumar</strong><br><small class="text-muted">Farmer, Kurnool</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="testimonial">
+            <p class="mb-2"><i class="fas fa-quote-left me-2 text-primary"></i> "On-time deliveries and consistent seed quality — highly recommend."</p>
+            <div class="d-flex align-items-center mt-3">
+              <img src="image/frame2/1.jpg" alt="" class="rounded-circle me-3" width="48" height="48" style="object-fit:cover">
+              <div>
+                <strong>Sri Ram Karthikeya</strong><br><small class="text-muted">Farmer, Tirupati</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="testimonial">
+            <p class="mb-2"><i class="fas fa-quote-left me-2 text-primary"></i> "Good advisory service; pest problems were solved quickly."</p>
+            <div class="d-flex align-items-center mt-3">
+              <img src="image/frame3/1.jpg" alt="" class="rounded-circle me-3" width="48" height="48" style="object-fit:cover">
+              <div>
+                <strong>Mohit Reddy</strong><br><small class="text-muted">Farmer, Guntur</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / QUICK FORM -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <h4>Contact Us</h4>
+          <p class="text-muted">Questions? Place an order or request field advisory — we'll get back within 24 hours.</p>
+
+          <ul class="list-unstyled contact-details">
+            <li class="mb-2"><i class="fas fa-map-marker-alt me-2" style="color:var(--primary-yellow)"></i> M.B.T. Road, Near Market Yard, Muhaksoheruvu (R.S.) - 517 360</li>
+            <li class="mb-2"><i class="fas fa-phone me-2" style="color:var(--primary-yellow)"></i> 7670911715, 8910214082</li>
+            <li><i class="fas fa-envelope me-2" style="color:var(--primary-yellow)"></i> sainathagroneeds@gmail.com</li>
+          </ul>
+        </div>
+
+        <div class="col-lg-6">
+          <form id="quickContact" class="row g-2">
+            <div class="col-md-6">
+              <input class="form-control" type="text" placeholder="Your name" required>
+            </div>
+            <div class="col-md-6">
+              <input class="form-control" type="email" placeholder="Email" required>
+            </div>
+            <div class="col-12">
+              <input class="form-control" type="text" placeholder="Phone" required>
+            </div>
+            <div class="col-12">
+              <textarea class="form-control" rows="4" placeholder="How can we help?" required></textarea>
+            </div>
+            <div class="col-12 d-grid">
+              <button class="btn btn-primary-brand" type="submit">Send Message</button>
+            </div>
+            <div id="quickMsg" class="form-text mt-2 text-success d-none">Thanks, we'll contact you soon.</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS LOGO STRIP -->
+  <section class="py-4" style="background:#fff;">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="mb-0">Our Partners</h5>
+        <small class="text-muted">Private agro companies in Andhra Pradesh</small>
+      </div>
+
+      <div class="row align-items-center partners g-3">
+        <div class="col-6 col-md-2 text-center"><img src="image/frame7/kurnool.jpg" alt="Kurnool Seeds" class="img-fluid"></div>
+        <div class="col-6 col-md-2 text-center"><img src="image/frame7/omkar.jpg" alt="Omkar Fertilisers" class="img-fluid"></div>
+        <div class="col-6 col-md-2 text-center"><img src="image/frame7/rama.jpg" alt="Sri Rama Agri" class="img-fluid"></div>
+        <div class="col-6 col-md-2 text-center"><img src="image/frqame7/2.jpg" alt="Sri Sesha Sai" class="img-fluid"></div>
+        <div class="col-6 col-md-2 text-center"><img src="image/frame7/1.jps" alt="Sri Venkateswara" class="img-fluid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer mt-5">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-5">
+          <img src="images/logo.png" alt="SAINATH AGRO NEEDS" width="110" style="border-radius:8px;">
+          <p class="mt-3 text-muted">We offer certified seeds, fertilizers and advisory services to empower farmers and promote sustainable agriculture.</p>
+          <p class="text-muted small">GST No. 37AYMPM7049N12K | TIN No.: 37837084590</p>
+        </div>
+
+        <div class="col-md-2">
+          <h6 style="color:var(--primary-yellow)">Quick Links</h6>
+          <ul class="list-unstyled footer-bulletlist">
+            <li><a href="about.html">About</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="services.html">Services</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-3">
+          <h6 style="color:var(--primary-yellow)">Photo Gallery</h6>
+          <div class="row g-2">
+            <div class="col-4"><img src="image/frame2/4.jpg" alt="" class="img-fluid rounded"></div>
+            <div class="col-4"><img src="image/frame4/3.jpg" alt="" class="img-fluid rounded"></div>
+            <div class="col-4"><img src="image/frame3/8.jpg" alt="" class="img-fluid rounded"></div>
+            <div class="col-4"><img src="image/frame6/9.jpg" alt="" class="img-fluid rounded"></div>
+            <div class="col-4"><img src="image/frame1/1.jpg" alt="" class="img-fluid rounded"></div>
+            <div class="col-4"><img src="image/frame5/1.jpg" alt="" class="img-fluid rounded"></div>
+          </div>
+        </div>
+
+       
+
+      <div class="text-center mt-4">
+        <small style="color:var(--accent-yellow)">Copyright © 2024 SAINATH AGRO NEEDS — All rights reserved</small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <a class="btn btn-primary-brand position-fixed" id="backToTop" href="#" style="right:18px; bottom:18px; border-radius:50%; width:48px; height:48px; display:none;">
+    <i class="fas fa-chevron-up"></i>
+  </a>
+
+  <!-- Scripts: Bootstrap 5 bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Your local scripts (if any) -->
+  <script src="js/main.js"></script>
+
+  <script>
+    // Small interactive behaviors
+    (function(){
+      // Newsletter form mock
+      const newsletterForm = document.getElementById('newsletterForm');
+      const newsletterMsg = document.getElementById('newsletterMsg');
+      if(newsletterForm){
+        newsletterForm.addEventListener('submit', function(e){
+          e.preventDefault();
+          newsletterMsg.classList.remove('d-none');
+          setTimeout(()=> newsletterMsg.classList.add('d-none'), 3000);
+          this.reset();
         });
-    </script>
+      }
 
+      // Quick contact form mock
+      const quickContact = document.getElementById('quickContact');
+      const quickMsg = document.getElementById('quickMsg');
+      if(quickContact){
+        quickContact.addEventListener('submit', function(e){
+          e.preventDefault();
+          quickMsg.classList.remove('d-none');
+          setTimeout(()=> quickMsg.classList.add('d-none'), 3500);
+          this.reset();
+        });
+      }
+
+      // Back-to-top
+      const btn = document.getElementById('backToTop');
+      window.addEventListener('scroll', ()=> {
+        if(window.scrollY > 180) btn.style.display = 'flex'; else btn.style.display = 'none';
+      });
+      btn.addEventListener('click', (e)=> {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Pause product scroll on visibility change to reduce CPU when tab is backgrounded
+      document.addEventListener('visibilitychange', ()=> {
+        const track = document.querySelector('.product-track');
+        if(!track) return;
+        track.style.animationPlayState = document.hidden ? 'paused' : 'running';
+      });
+    })();
+  </script>
 </body>
 </html>
