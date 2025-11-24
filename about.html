@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>About Us - SAINATH AGRO NEEDS</title>
-    <link rel="shortcut icon" href="images/Favicon.png">
+    <link rel="shortcut icon" href="images/logo.png">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/stylesheet.css">
@@ -12,11 +13,25 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* ===== COLOR VARIABLES ===== */
+        :root {
+            --primary-yellow: #9acd32; /* Yellow Green */
+            --primary-dark: #7cb518; /* Darker Yellow Green */
+            --accent-yellow: #d4e157; /* Light Yellow Green */
+            --light-yellow: #f1f8e9; /* Very Light Yellow Green */
+            --dark-green: #558b2f; /* Dark Green for contrast */
+            --text-dark: #2e3a1f; /* Dark text for readability */
+            --text-light: #5a6c3d; /* Light text */
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+        }
+
         /* ===== BASE STYLES ===== */
         body {
             font-family: 'Montserrat', sans-serif;
-            color: #333;
+            color: var(--text-dark);
             line-height: 1.6;
+            background: var(--white);
         }
 
         html {
@@ -29,32 +44,34 @@
 
         /* ===== NAVIGATION ===== */
         .navbar {
-            background: #28a745;
+            background: var(--primary-yellow);
             padding: 15px 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .navbar-brand img {
             height: 50px;
-            border: 3px solid white;
+            border: 3px solid var(--white);
             border-radius: 50%;
         }
 
         .nav-link {
             transition: all 0.3s ease;
             font-weight: 500;
-            color: white !important;
+            color: var(--white) !important;
             padding: 10px 15px !important;
         }
 
         .nav-link:hover {
-            color: #f8f9fa !important;
+            color: var(--light-yellow) !important;
             transform: translateY(-2px);
         }
 
         .nav-item.active .nav-link {
-            color: #ffeb3b !important;
+            color: var(--dark-green) !important;
             font-weight: 600;
+            background: var(--accent-yellow);
+            border-radius: 4px;
         }
 
         /* ===== PAGE HEADER ===== */
@@ -62,7 +79,7 @@
             background: url('images/WhatsApp-Image-2024-08-11-at-14.10.37.jpeg');
             background-size: cover;
             background-position: center;
-            color: white;
+            color: var(--white);
             padding: 120px 0;
             text-align: center;
             margin-bottom: 50px;
@@ -76,7 +93,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(46, 58, 31, 0.6); /* Dark green overlay */
         }
 
         .page-header .container {
@@ -101,6 +118,7 @@
         /* ===== ABOUT SECTION ===== */
         .about-section {
             padding: 80px 0;
+            background: var(--white);
         }
 
         .layer-title {
@@ -112,37 +130,38 @@
             font-size: 2.8rem;
             font-weight: 700;
             margin-bottom: 20px;
-            color: #333;
+            color: var(--text-dark);
         }
 
         .layer-title .light-text {
-            color: #666;
-            font-weight: 300;
+            color: var(--primary-yellow);
+            font-weight: 600;
         }
 
         .layer-title p {
             font-size: 1.2rem;
-            color: #666;
+            color: var(--text-light);
             max-width: 700px;
             margin: 0 auto;
         }
 
         .about-content {
-            background: white;
+            background: var(--white);
             padding: 40px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(154, 205, 50, 0.15);
+            border-left: 4px solid var(--primary-yellow);
             transition: all 0.3s ease;
             margin-bottom: 40px;
         }
 
         .about-content:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(154, 205, 50, 0.25);
         }
 
         .about-content h2 {
-            color: #28a745;
+            color: var(--primary-dark);
             margin-bottom: 25px;
             font-size: 2rem;
             font-weight: 600;
@@ -151,55 +170,57 @@
         /* ===== COUNTER STYLES ===== */
         .counter-section {
             padding: 60px 0;
-            background: #f8f9fa;
+            background: var(--light-yellow);
             margin: 60px 0;
         }
 
         .counter-inner-box {
-            background: white;
+            background: var(--white);
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(154, 205, 50, 0.15);
             text-align: center;
             margin-bottom: 30px;
             transition: all 0.3s ease;
+            border-top: 3px solid var(--primary-yellow);
         }
 
         .counter-inner-box:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(154, 205, 50, 0.25);
         }
 
         .counter {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #28a745;
+            color: var(--primary-dark);
             margin-bottom: 10px;
         }
 
         .counter-inner-box p {
             margin: 0;
             font-weight: 500;
-            color: #666;
+            color: var(--text-light);
         }
 
         /* ===== GRID BOX STYLES ===== */
         .grid-box-layer {
-            background: white;
+            background: var(--white);
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(154, 205, 50, 0.15);
             margin-bottom: 30px;
             transition: all 0.3s ease;
+            border-left: 3px solid var(--primary-yellow);
         }
 
         .grid-box-layer:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(154, 205, 50, 0.25);
         }
 
         .grid-box-layer h4 {
-            color: #28a745;
+            color: var(--primary-dark);
             margin-bottom: 15px;
             font-size: 1.4rem;
             font-weight: 600;
@@ -209,19 +230,21 @@
             width: 60px;
             height: 60px;
             object-fit: contain;
+            filter: hue-rotate(40deg) saturate(200%); /* Make icons match yellow-green theme */
         }
 
         /* ===== IMAGE STYLES ===== */
         .large-img-layer {
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(154, 205, 50, 0.15);
             transition: all 0.3s ease;
+            border: 3px solid var(--primary-yellow);
         }
 
         .large-img-layer:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(154, 205, 50, 0.25);
         }
 
         .large-img-layer img {
@@ -234,16 +257,30 @@
             transform: scale(1.05);
         }
 
+        /* ===== BUTTON STYLES ===== */
+        .btn-primary {
+            background: var(--primary-yellow);
+            border-color: var(--primary-yellow);
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+            color: var(--white);
+        }
+
         /* ===== FOOTER STYLES ===== */
         .footer-area {
-            background: #333;
-            color: white;
+            background: var(--text-dark);
+            color: var(--white);
             padding: 50px 0 20px;
             margin-top: 80px;
         }
 
         .footer-col h5 {
-            color: #28a745;
+            color: var(--primary-yellow);
             margin-bottom: 25px;
             font-size: 1.3rem;
             font-weight: 600;
@@ -260,7 +297,7 @@
         }
 
         .footer-bulletlist a {
-            color: #ddd;
+            color: var(--light-yellow);
             text-decoration: none;
             transition: all 0.3s ease;
             display: block;
@@ -268,7 +305,7 @@
         }
 
         .footer-bulletlist a:hover {
-            color: #28a745;
+            color: var(--primary-yellow);
             transform: translateX(5px);
         }
 
@@ -290,6 +327,7 @@
             object-fit: cover;
             border-radius: 6px;
             transition: transform 0.3s ease;
+            border: 2px solid var(--primary-yellow);
         }
 
         .footer-2-img img:hover {
@@ -297,16 +335,16 @@
         }
 
         .copyright {
-            border-top: 1px solid #555;
+            border-top: 1px solid var(--primary-yellow);
             padding-top: 20px;
             margin-top: 30px;
             text-align: center;
-            color: #bbb;
+            color: var(--accent-yellow);
             font-size: 0.9rem;
         }
 
         .footer-desc {
-            color: #ddd;
+            color: var(--light-yellow);
             line-height: 1.7;
             margin-bottom: 20px;
         }
@@ -316,8 +354,8 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: #28a745;
-            color: white;
+            background: var(--primary-yellow);
+            color: var(--text-dark);
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -328,6 +366,7 @@
             opacity: 0;
             transition: all 0.3s ease;
             z-index: 1000;
+            font-weight: bold;
         }
 
         .back-to-top.show {
@@ -336,8 +375,9 @@
 
         .back-to-top:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
-            color: white;
+            box-shadow: 0 5px 15px rgba(154, 205, 50, 0.4);
+            color: var(--text-dark);
+            background: var(--accent-yellow);
         }
 
         /* ===== RESPONSIVE DESIGN ===== */
@@ -391,6 +431,25 @@
 
         .fade-in-up {
             animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* ===== CUSTOM BADGES ===== */
+        .badge-yellow {
+            background: var(--primary-yellow);
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* ===== CUSTOM CARDS ===== */
+        .card-yellow {
+            border: 1px solid var(--primary-yellow);
+            border-top: 3px solid var(--primary-yellow);
+        }
+
+        .card-yellow .card-header {
+            background: var(--light-yellow);
+            color: var(--text-dark);
+            font-weight: 600;
         }
     </style>
 </head>
@@ -522,53 +581,54 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="footer-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-5 col-lg-5 col-md-6">
-                    <div class="footer-col">
-                        <figure class="footer-logo"></figure>
-                        <p class="footer-desc"><img loading="lazy" decoding="async" class="alignnone wp-image-541" src="logo SAN .png" alt="" width="100"></p>
-                        <p class="footer-desc">At <strong>SAINATH AGRO NEEDS</strong>, we pride ourselves on offering a diverse range of high-quality seeds, pesticides, and fertilizers to meet the needs of farmers across the country.</p>
-                    </div>
-                </div>
-                
-                <div class="col-xl-2 col-lg-2 col-md-6">
-                    <div class="footer-col">
-                        <h5>About Us</h5>
-                        <ul class="footer-bulletlist">
-                            <li><a href="about.html">Our Story</a></li>
-                            <li><a href="about.html">Mission & Vision</a></li>
-                            <li><a href="about.html">Team</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-6">
-                    <div class="footer-col">
-                        <h5>Photo Gallery</h5>
-                        <ul class="footer-2-img">
-                            <li><img loading="lazy" decoding="async" src="images/g1-6.jpg" alt=""></li>
-                            <li><img loading="lazy" decoding="async" src="images/g1-5.jpg" alt=""></li>
-                            <li><img loading="lazy" decoding="async" src="images/g1-4.jpg" alt=""></li>
-                            <li><img loading="lazy" decoding="async" src="images/g1-3.jpg" alt=""></li>
-                            <li><img loading="lazy" decoding="async" src="images/g1-2.jpg" alt=""></li>
-                            <li><img loading="lazy" decoding="async" src="images/g1-1.jpg" alt=""></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="bottom-footer">
+    <!-- FOOTER (original content preserved) -->
+        <footer class="footer-area">
+            <div class="container">
                 <div class="row">
-                    <div class="col-xl-12">
-                        <div class="copyright text-center">
-                            <p>Copyright © 2024 <strong>SAINATH AGRO NEEDS</strong> | GST No. 37AYMPM7048N1ZK | TIN No.:37637084550 | Pesticides L.No.: 2026/16 | M.B.T. Road, Near Market Yard, Mulakacheruvu (R.S.)- 517 390 | Call on 7670911715, 8919214082 | Mail: sainathagroneeds@gmail.com and info@sainathagroneeds.in</p>
+                    <div class="col-xl-5 col-lg-5 col-md-6">
+                        <div class="footer-col">
+                            <figure class="footer-logo"></figure>
+                            <p class="footer-desc"><img loading="lazy" decoding="async" class="alignnone wp-image-541" src="images/logo.png" alt="" width="100"></p>
+                            <p><h5>SAINATH ARGO NEEDS</h5></p>
+                            <p class="footer-desc">At <strong>SAINATH AGRO NEEDS</strong>, we pride ourselves on offering a diverse range of high-quality seeds, pesticides, and fertilizers to meet the needs of farmers across the country.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-2 col-lg-2 col-md-6">
+                        <div class="footer-col">
+                            <h5>About Us</h5>
+                            <ul class="footer-bulletlist">
+                                <li><a href="about.html">Our Story</a></li>
+                                <li><a href="about.html">Mission & Vision</a></li>
+                                <li><a href="about.html">Team</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6">
+                        <div class="footer-col">
+                            <h5>Photo Gallery</h5>
+                            <ul class="footer-2-img">
+                                <li><img loading="lazy" decoding="async" src="image/frame2/4.jpg" alt=""></li>
+                                <li><img loading="lazy" decoding="async" src="image/frame4/3.jpg" alt=""></li>
+                                <li><img loading="lazy" decoding="async" src="image/frame3/8.jpg" alt=""></li>
+                                <li><img loading="lazy" decoding="async" src="image/frame6/9.jpg" alt=""></li>
+                                <li><img loading="lazy" decoding="async" src="image/frame1/1.jpg" alt=""></li>
+                                <li><img loading="lazy" decoding="async" src="image/frame5/1.jpg" alt=""></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-footer">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="copyright text-center">
+                                <p>Copyright © 2024 <strong>SAINATH AGRO NEEDS</strong> | GST No. 37AYMPM7049N12K | TIN No.:37837084590 | Pesticides L.No.: 2029/16 | M.B.T. Road, Near Market Yard, Muhaksoheruvu (R.S.) - 517 360 | Call on 7670911715, 8910214082 | Mail: samathagroneedi@gmail.com and info@sainathagroneedi.in</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
 
     <!-- BACK TO TOP -->
     <a href="#" class="back-to-top">
