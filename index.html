@@ -113,10 +113,84 @@
     /* ===== NEWSLETTER ===== */
     .newsletter { background: linear-gradient(180deg, #fff, #fbfbef); padding:28px; border-radius:12px; border:2px solid rgba(154,205,50,0.12); }
 
-    /* ===== FOOTER ===== */
-    .footer { background:var(--text-dark); color:#fff; padding:40px 0; }
-    .footer a { color:var(--light-yellow); text-decoration:none; }
-    .footer a:hover { color:var(--primary-yellow); }
+/* ===== FOOTER STYLES ===== */
+        .footer-area {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 50px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-col h5 {
+            color: var(--primary-yellow);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .footer-bulletlist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-bulletlist li {
+            margin-bottom: 12px;
+            padding-left: 0;
+        }
+
+        .footer-bulletlist a {
+            color: var(--light-yellow);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .footer-bulletlist a:hover {
+            color: var(--primary-yellow);
+            transform: translateX(5px);
+        }
+
+        .footer-2-img {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .footer-2-img li {
+            flex: 0 0 calc(33.333% - 8px);
+        }
+
+        .footer-2-img img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+            transition: transform 0.3s ease;
+            border: 2px solid var(--primary-yellow);
+        }
+
+        .footer-2-img img:hover {
+            transform: scale(1.05);
+        }
+
+        .copyright {
+            border-top: 1px solid var(--primary-yellow);
+            padding-top: 20px;
+            margin-top: 30px;
+            text-align: center;
+            color: var(--accent-yellow);
+            font-size: 0.9rem;
+        }
+
+        .footer-desc {
+            color: var(--light-yellow);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
 
     /* ===== small tweaks ===== */
     @media (max-width: 992px){
@@ -435,44 +509,54 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="footer mt-5">
-    <div class="container">
-      <div class="row gy-4">
-        <div class="col-md-5">
-          <img src="images/logo.png" alt="SAINATH AGRO NEEDS" width="110" style="border-radius:8px;">
-          <p class="mt-3 text-muted">We offer certified seeds, fertilizers and advisory services to empower farmers and promote sustainable agriculture.</p>
-          <p class="text-muted small">GST No. 37AYMPM7049N12K | TIN No.: 37837084590</p>
-        </div>
+  <!-- FOOTER (original content preserved) -->
+        <footer class="footer-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-6">
+                        <div class="footer-col">
+                            <figure class="footer-logo"></figure>
+                            <p class="footer-desc"><img loading="lazy" decoding="async" class="alignnone wp-image-541" src="images/logo.png" alt="" width="100"></p>
+                            <p><h5>SAINATH ARGO NEEDS</h5></p>
+                            <p class="footer-desc">At <strong>SAINATH AGRO NEEDS</strong>, we pride ourselves on offering a diverse range of high-quality seeds, pesticides, and fertilizers to meet the needs of farmers across the country.</p>
+                        </div>
+                    </div>
 
-        <div class="col-md-2">
-          <h6 style="color:var(--primary-yellow)">Quick Links</h6>
-          <ul class="list-unstyled footer-bulletlist">
-            <li><a href="about.html">About</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="services.html">Services</a></li>
-          </ul>
-        </div>
-
-        <div class="col-md-3">
-          <h6 style="color:var(--primary-yellow)">Photo Gallery</h6>
-          <div class="row g-2">
-            <div class="col-4"><img src="image/frame2/4.jpg" alt="" class="img-fluid rounded"></div>
-            <div class="col-4"><img src="image/frame4/3.jpg" alt="" class="img-fluid rounded"></div>
-            <div class="col-4"><img src="image/frame3/8.jpg" alt="" class="img-fluid rounded"></div>
-            <div class="col-4"><img src="image/frame6/9.jpg" alt="" class="img-fluid rounded"></div>
-            <div class="col-4"><img src="image/frame1/1.jpg" alt="" class="img-fluid rounded"></div>
-            <div class="col-4"><img src="image/frame5/1.jpg" alt="" class="img-fluid rounded"></div>
-          </div>
-        </div>
-
-       
-
-      <div class="text-center mt-4">
-        <small style="color:var(--accent-yellow)">Copyright © 2024 SAINATH AGRO NEEDS — All rights reserved</small>
-      </div>
-    </div>
-  </footer>
+                    <div class="col-xl-2 col-lg-2 col-md-6">
+                        <div class="footer-col">
+                            <h5>About Us</h5>
+                            <ul class="footer-bulletlist">
+                                <li><a href="about.html">Our Story</a></li>
+                                <li><a href="about.html">Mission & Vision</a></li>
+                                <li><a href="about.html">Team</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6">
+                        <div class="footer-col">
+                            <h5>Photo Gallery</h5>
+                            <ul class="footer-2-img">
+                                <li><img loading="lazy" decoding="async" src="image/frame2/4.jpg" alt=""></li>
+                                <li><img loading="lazy" decoding="async" src="image/frame4/3.jpg" alt=""></li>
+                                <li><img loading="lazy" decoding="async" src="image/frame3/8.jpg" alt=""></li>
+                                <li><img loading="lazy" decoding="async" src="image/frame6/9.jpg" alt=""></li>
+                                <li><img loading="lazy" decoding="async" src="image/frame1/1.jpg" alt=""></li>
+                                <li><img loading="lazy" decoding="async" src="image/frame5/1.jpg" alt=""></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-footer">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="copyright text-center">
+                                <p>Copyright © 2024 <strong>SAINATH AGRO NEEDS</strong> | GST No. 37AYMPM7049N12K | TIN No.:37837084590 | Pesticides L.No.: 2029/16 | M.B.T. Road, Near Market Yard, Muhaksoheruvu (R.S.) - 517 360 | Call on 7670911715, 8910214082 | Mail: samathagroneedi@gmail.com and info@sainathagroneedi.in</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
   <!-- Back to top -->
   <a class="btn btn-primary-brand position-fixed" id="backToTop" href="#" style="right:18px; bottom:18px; border-radius:50%; width:48px; height:48px; display:none;">
