@@ -316,151 +316,84 @@
   <script src="js/bootstrap.min.js"></script>
 
   <!-- Slider builder script (keeps your uploaded image visible immediately) -->
-  <script>
+ <script>
   (function(){
-    // =============== IMPORTANT: uploaded image path included for immediate visibility ===============
-    // This path is the local upload present in your workspace so Frame1 shows an image instantly:
-    const uploadedImage = '/mnt/data/6babf526-ff90-4a4e-9204-4b619f3b5b97.png';
 
-    const exts = ['jpg','jpeg','png','webp','gif','JPG','PNG'];
-
-    function probeImage(src){
-      return new Promise(resolve=>{
-        const img = new Image();
-        img.onload = ()=> resolve({src, ok:true});
-        img.onerror = ()=> resolve({src, ok:false});
-        img.src = src;
-      });
-    }
-
-    async function gatherFromPattern(folder, limit=12){
-      const found = [];
-      for(let i=1;i<=limit;i++){
-        for(const ext of exts){
-          const cand = folder + i + '.' + ext;
-          // eslint-disable-next-line no-await-in-loop
-          const res = await probeImage(cand);
-          if(res.ok) { found.push(cand); break; }
-        }
+  async function loadManifest(folder){
+    if(!folder.endsWith("/")) folder += "/";
+    try{
+      const resp = await fetch(folder + "manifest.json", {cache:"no-store"});
+      if(!resp.ok) return null;
+      const list = await resp.json();
+      if(Array.isArray(list) && list.length > 0){
+        return list.map(f => folder + f);
       }
-      return found;
+      return null;
+    } catch(e){
+      return null;
     }
+  }
 
-    async function collectImagesForFolder(folder){
-      if(!folder) return [];
-      if(!folder.endsWith('/')) folder += '/';
+  async function buildFrame(frameEl, idx){
+    const folder = frameEl.dataset.folder;
+    const speed  = frameEl.dataset.speed || 15;
 
-      // try manifest.json first (optional)
-      try {
-        const resp = await fetch(folder + 'manifest.json', {cache:'no-store'});
-        if(resp.ok){
-          const list = await resp.json();
-          if(Array.isArray(list) && list.length) return list.map(f => folder + f);
-        }
-      } catch(e){ /* ignore */ }
+    // Load images ONLY from manifest.json
+    const images = await loadManifest(folder);
 
-      // fallback: probe common numeric filenames
-      try {
-        const found = await gatherFromPattern(folder, 12);
-        if(found.length) return found;
-      } catch(e){ /* ignore */ }
-
-      return [];
-    }
-
-    async function buildFrame(frameEl, idx){
-      const folder = frameEl.dataset.folder || '';
-      const speed = parseFloat(frameEl.dataset.speed) || 24;
-      const images = await collectImagesForFolder(folder);
-
-      // ensure uploaded image present in frame 1 for instant feedback
-      if(idx === 0) {
-        // push to front (if not duplicate)
-        if(!images.includes(uploadedImage)) images.unshift(uploadedImage);
-      }
-
-      if(images.length === 0){
-        const ph = document.createElement('div');
-        ph.className = 'placeholder';
-        ph.textContent = 'No images found in ' + folder;
-        frameEl.appendChild(ph);
-        return;
-      }
-
-      const track = document.createElement('div');
-      track.className = 'slider-track';
-
-      // append original then duplicate
-      images.forEach(src => {
-        const im = document.createElement('img');
-        im.src = src;
-        im.alt = '';
-        track.appendChild(im);
-      });
-      images.forEach(src => {
-        const im = document.createElement('img');
-        im.src = src;
-        im.alt = '';
-        track.appendChild(im);
-      });
-
-      frameEl.appendChild(track);
-
-      // small delay allow images to render and measure
-      await new Promise(r => setTimeout(r, 120));
-
-      // calculate total width (sum of children widths)
-      const totalWidth = Array.from(track.children).reduce((sum, node) => {
-        const w = node.getBoundingClientRect().width || 300;
-        return sum + w;
-      }, 0);
-
-      // shift = half (because duplicated)
-      const shift = totalWidth / 2;
-
-      // animation duration (use dataset speed)
-      const duration = Math.max(6, speed);
-
-      // create unique keyframes that translate track left by shift px
-      const animName = 'scrollTrack_' + Math.random().toString(36).substr(2,6);
-      const styleTag = document.createElement('style');
-      styleTag.innerHTML = `
-        @keyframes ${animName} {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-${shift}px); }
-        }
+    if(!images){
+      frameEl.innerHTML = `
+        <div class="placeholder">Add manifest.json to ${folder}</div>
       `;
-      document.head.appendChild(styleTag);
-
-      track.style.animationName = animName;
-      track.style.animationDuration = duration + 's';
-      track.style.animationTimingFunction = 'linear';
-      track.style.animationIterationCount = 'infinite';
-      track.style.willChange = 'transform';
-
-      // pause-on-hover and resume
-      frameEl.addEventListener('mouseenter', ()=> track.style.animationPlayState = 'paused');
-      frameEl.addEventListener('mouseleave', ()=> track.style.animationPlayState = 'running');
-      frameEl.addEventListener('focus', ()=> track.style.animationPlayState = 'paused');
-      frameEl.addEventListener('blur', ()=> track.style.animationPlayState = 'running');
+      return;
     }
 
-    document.addEventListener('DOMContentLoaded', async ()=>{
-      const frames = Array.from(document.querySelectorAll('.frame'));
-      for(let i=0;i<frames.length;i++){
-        // eslint-disable-next-line no-await-in-loop
-        await buildFrame(frames[i], i);
-      }
+    // Build track
+    const track = document.createElement("div");
+    track.className = "slider-track";
 
-      // small helper: set active nav item based on current filename
-      try {
-        const current = window.location.pathname.split('/').pop() || 'index.html';
-        document.querySelectorAll('.navbar .nav-link').forEach(a=>{
-          if(a.getAttribute('href') === current) a.parentElement.classList.add('active');
-        });
-      } catch(e){}
-    });
-  })();
-  </script>
+    // Add images twice (for seamless scroll)
+    images.forEach(src => track.innerHTML += `<img src="${src}">`);
+    images.forEach(src => track.innerHTML += `<img src="${src}">`);
+
+    frameEl.appendChild(track);
+
+    // Wait for rendering
+    await new Promise(r => setTimeout(r, 80));
+
+    // Calculate width
+    const width = Array.from(track.children)
+      .reduce((sum, el) => sum + el.getBoundingClientRect().width, 0);
+
+    const shift = width / 2;
+
+    // Generate animation name
+    const animName = "scroll_" + Math.random().toString(36).slice(2);
+
+    const style = document.createElement("style");
+    style.innerHTML = `
+      @keyframes ${animName} {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-${shift}px); }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Apply animation
+    track.style.animation = `${animName} ${speed}s linear infinite`;
+
+    // Pause on hover
+    frameEl.addEventListener("mouseenter", () => track.style.animationPlayState = "paused");
+    frameEl.addEventListener("mouseleave", () => track.style.animationPlayState = "running");
+  }
+
+  document.addEventListener("DOMContentLoaded", async ()=> {
+    const frames = document.querySelectorAll(".frame");
+    frames.forEach((frame, idx) => buildFrame(frame, idx));
+  });
+
+})();
+</script>
+
 </body>
 </html>
